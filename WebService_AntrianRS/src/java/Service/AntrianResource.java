@@ -5,7 +5,7 @@
  */
 package Service;
 
-import Helper.PasienHelper;
+import Helper.AntrianHelper;
 import com.google.gson.Gson;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -14,6 +14,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
@@ -21,26 +22,26 @@ import javax.ws.rs.core.Response;
  *
  * @author Afra Rian
  */
-@Path("Pasien")
-public class PasienResource {
+@Path("Antrian")
+public class AntrianResource {
 
     @Context
     private UriInfo context;
 
     /**
-     * Creates a new instance of PasienResource
+     * Creates a new instance of AntrianResource
      */
-    public PasienResource() {
+    public AntrianResource() {
     }
 
     /**
-     * Retrieves representation of an instance of Service.PasienResource
+     * Retrieves representation of an instance of Service.AntrianResource
      * @return an instance of java.lang.String
      */
     @GET
-    @Produces(javax.ws.rs.core.MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response getJson() {
-        PasienHelper helper = new PasienHelper();
+        AntrianHelper helper = new AntrianHelper();
         Gson g = new Gson();
 
         return Response.status(Response.Status.OK)
@@ -60,11 +61,11 @@ public class PasienResource {
     }
 
     /**
-     * PUT method for updating or creating an instance of PasienResource
+     * PUT method for updating or creating an instance of AntrianResource
      * @param content representation for the resource
      */
     @PUT
-    @Consumes(javax.ws.rs.core.MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     public void putJson(String content) {
     }
 }

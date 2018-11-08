@@ -80,7 +80,12 @@ public class RumahSakit  implements java.io.Serializable {
         this.limitAntriRs = limitAntriRs;
     }
 
-
+    public String toJson() {
+        return "(\"userNameRs\":" + getUserNameRs()+ "\"passwordRs\":" 
+                + getPasswordRs() + "\"namaRs\":" + getNamaRs() + "\"alamatRs\":" 
+                + getAlamatRs() + "\"telpRs\":" + getTelpRs() + "\"emailRs\":" 
+                + getEmailRs() + "\"limitAntriRs\":" + getLimitAntriRs() + ")";
+    }
 
 
 }

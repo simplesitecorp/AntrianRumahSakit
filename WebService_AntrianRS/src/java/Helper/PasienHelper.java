@@ -23,7 +23,7 @@ public class PasienHelper {
         
     }
     
-     public List<Pasien> getAllPasien(){
+    public List<Pasien> getAllPasien(){
         List<Pasien> result = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         String query = "from Pasien p";

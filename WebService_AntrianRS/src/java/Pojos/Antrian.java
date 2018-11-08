@@ -54,7 +54,11 @@ public class Antrian  implements java.io.Serializable {
         this.date = date;
     }
 
-
+    public String toJson() {
+        return "(\"namaRS\":" + getNamaRs() + "\"namaPsn\":" 
+                + getNamaPsn() + "\"alamatPsn\":" + getAlamatPsn() + "\"date\":" 
+                + getDate() + ")";
+    }
 
 
 }

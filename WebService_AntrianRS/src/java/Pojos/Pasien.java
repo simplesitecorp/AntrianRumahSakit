@@ -79,7 +79,13 @@ public class Pasien  implements java.io.Serializable {
     public void setEmailPsn(String emailPsn) {
         this.emailPsn = emailPsn;
     }
-
+    
+    public String toJson() {
+        return "(\"userNamePsn\":" + getUserNamePsn() + "\"passwordPsn\":" 
+                + getPasswordPsn() + "\"nikPsn\":" + getNikPsn() + "\"namaPsn\":" 
+                + getNamaPsn() + "\"alamatPsn\":" + getAlamatPsn() + "\"telpPsn\":" 
+                + getTelpPsn() + "\"emailPsn\":" + getEmailPsn() + ")";
+    }
 
 
 
