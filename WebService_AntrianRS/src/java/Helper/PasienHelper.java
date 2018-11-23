@@ -7,7 +7,6 @@ package Helper;
 
 import Pojos.Pasien;
 import Util.NewHibernateUtil;
-import java.util.Date;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;

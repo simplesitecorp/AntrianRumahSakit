@@ -5,9 +5,8 @@
  */
 package Helper;
 
-import Pojos.Antrian;
+import Pojos.Klinik;
 import Util.NewHibernateUtil;
-import java.util.Date;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -17,16 +16,16 @@ import org.hibernate.Transaction;
  *
  * @author Afra Rian
  */
-public class AntrianHelper {
-    
-    public AntrianHelper() {
-        
+public class KlinikHelper {
+
+    public KlinikHelper() {
+
     }
     
-    public List<Antrian> getAllPasien(){
-        List<Antrian> result = null;
+    public List<Klinik> getAllPasien(){
+        List<Klinik> result = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
-        String query = "from Antrian a";
+        String query = "from Klinik k";
         Query q = session.createQuery(query);
         result = q.list();
         session.close();
@@ -34,15 +33,14 @@ public class AntrianHelper {
         
     }
     
-    public void addNewAntrian(String namaPsn, String namaRs,
-            String namaKlinik,
-            Date date){
+    public void addNewKlinik(String idKlinik, String namaKlinik,
+            String namaRs,
+            int limitAntrian){
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        Antrian antrian = new Antrian(namaPsn, namaRs, namaKlinik, date);
-        session.saveOrUpdate(antrian);
+        Klinik klinik = new Klinik(idKlinik, namaKlinik, namaRs, limitAntrian);
+        session.saveOrUpdate(klinik);
         transaction.commit();
         session.close();
     }
-    
 }

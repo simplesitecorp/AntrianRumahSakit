@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 23, 2018 2:54:16 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Pojos.Klinik" table="Klinik" catalog="db165314106" optimistic-lock="version">
+        <id name="idKlinik" type="string">
+            <column name="idKlinik" length="10" />
+            <generator class="assigned" />
+        </id>
+        <property name="namaKlinik" type="string">
+            <column name="namaKlinik" length="30" not-null="true" />
+        </property>
+        <property name="namaRs" type="string">
+            <column name="namaRs" length="60" not-null="true" />
+        </property>
+        <property name="limitAntrian" type="int">
+            <column name="limitAntrian" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

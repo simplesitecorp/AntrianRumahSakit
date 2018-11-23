@@ -41,7 +41,8 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="db165314106"/>
+  <table-filter match-name="RumahSakit"/>
   <table-filter match-name="Antrian"/>
   <table-filter match-name="Pasien"/>
-  <table-filter match-name="RumahSakit"/>
+  <table-filter match-name="Klinik"/>
 </hibernate-reverse-engineering>

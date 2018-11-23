@@ -1,5 +1,5 @@
 package Pojos;
-// Generated Nov 1, 2018 12:38:46 PM by Hibernate Tools 4.3.1
+// Generated Nov 23, 2018 2:54:14 PM by Hibernate Tools 4.3.1
 
 
 
@@ -15,19 +15,17 @@ public class RumahSakit  implements java.io.Serializable {
      private String alamatRs;
      private int telpRs;
      private String emailRs;
-     private int limitAntriRs;
 
     public RumahSakit() {
     }
 
-    public RumahSakit(String userNameRs, String passwordRs, String namaRs, String alamatRs, int telpRs, String emailRs, int limitAntriRs) {
+    public RumahSakit(String userNameRs, String passwordRs, String namaRs, String alamatRs, int telpRs, String emailRs) {
        this.userNameRs = userNameRs;
        this.passwordRs = passwordRs;
        this.namaRs = namaRs;
        this.alamatRs = alamatRs;
        this.telpRs = telpRs;
        this.emailRs = emailRs;
-       this.limitAntriRs = limitAntriRs;
     }
    
     public String getUserNameRs() {
@@ -72,20 +70,8 @@ public class RumahSakit  implements java.io.Serializable {
     public void setEmailRs(String emailRs) {
         this.emailRs = emailRs;
     }
-    public int getLimitAntriRs() {
-        return this.limitAntriRs;
-    }
-    
-    public void setLimitAntriRs(int limitAntriRs) {
-        this.limitAntriRs = limitAntriRs;
-    }
 
-    public String toJson() {
-        return "(\"userNameRs\":" + getUserNameRs()+ "\"passwordRs\":" 
-                + getPasswordRs() + "\"namaRs\":" + getNamaRs() + "\"alamatRs\":" 
-                + getAlamatRs() + "\"telpRs\":" + getTelpRs() + "\"emailRs\":" 
-                + getEmailRs() + "\"limitAntriRs\":" + getLimitAntriRs() + ")";
-    }
+
 
 
 }

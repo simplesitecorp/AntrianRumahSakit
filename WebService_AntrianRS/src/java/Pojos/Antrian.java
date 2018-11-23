@@ -1,5 +1,5 @@
 package Pojos;
-// Generated Nov 1, 2018 12:38:46 PM by Hibernate Tools 4.3.1
+// Generated Nov 23, 2018 2:54:14 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -10,28 +10,21 @@ import java.util.Date;
 public class Antrian  implements java.io.Serializable {
 
 
-     private String namaRs;
      private String namaPsn;
-     private String alamatPsn;
+     private String namaRs;
+     private String namaKlinik;
      private Date date;
 
     public Antrian() {
     }
 
-    public Antrian(String namaRs, String namaPsn, String alamatPsn, Date date) {
-       this.namaRs = namaRs;
+    public Antrian(String namaPsn, String namaRs, String namaKlinik, Date date) {
        this.namaPsn = namaPsn;
-       this.alamatPsn = alamatPsn;
+       this.namaRs = namaRs;
+       this.namaKlinik = namaKlinik;
        this.date = date;
     }
    
-    public String getNamaRs() {
-        return this.namaRs;
-    }
-    
-    public void setNamaRs(String namaRs) {
-        this.namaRs = namaRs;
-    }
     public String getNamaPsn() {
         return this.namaPsn;
     }
@@ -39,12 +32,19 @@ public class Antrian  implements java.io.Serializable {
     public void setNamaPsn(String namaPsn) {
         this.namaPsn = namaPsn;
     }
-    public String getAlamatPsn() {
-        return this.alamatPsn;
+    public String getNamaRs() {
+        return this.namaRs;
     }
     
-    public void setAlamatPsn(String alamatPsn) {
-        this.alamatPsn = alamatPsn;
+    public void setNamaRs(String namaRs) {
+        this.namaRs = namaRs;
+    }
+    public String getNamaKlinik() {
+        return this.namaKlinik;
+    }
+    
+    public void setNamaKlinik(String namaKlinik) {
+        this.namaKlinik = namaKlinik;
     }
     public Date getDate() {
         return this.date;
@@ -54,11 +54,7 @@ public class Antrian  implements java.io.Serializable {
         this.date = date;
     }
 
-    public String toJson() {
-        return "(\"namaRS\":" + getNamaRs() + "\"namaPsn\":" 
-                + getNamaPsn() + "\"alamatPsn\":" + getAlamatPsn() + "\"date\":" 
-                + getDate() + ")";
-    }
+
 
 
 }

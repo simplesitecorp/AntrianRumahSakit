@@ -1,5 +1,5 @@
 package Pojos;
-// Generated Nov 1, 2018 12:38:46 PM by Hibernate Tools 4.3.1
+// Generated Nov 23, 2018 2:54:14 PM by Hibernate Tools 4.3.1
 
 
 
@@ -79,13 +79,7 @@ public class Pasien  implements java.io.Serializable {
     public void setEmailPsn(String emailPsn) {
         this.emailPsn = emailPsn;
     }
-    
-    public String toJson() {
-        return "(\"userNamePsn\":" + getUserNamePsn() + "\"passwordPsn\":" 
-                + getPasswordPsn() + "\"nikPsn\":" + getNikPsn() + "\"namaPsn\":" 
-                + getNamaPsn() + "\"alamatPsn\":" + getAlamatPsn() + "\"telpPsn\":" 
-                + getTelpPsn() + "\"emailPsn\":" + getEmailPsn() + ")";
-    }
+
 
 
 

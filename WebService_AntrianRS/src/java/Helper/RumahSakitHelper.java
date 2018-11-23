@@ -10,6 +10,7 @@ import Util.NewHibernateUtil;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -30,6 +31,19 @@ public class RumahSakitHelper {
         session.close();
         return result;
         
+    }
+    
+    public void addNewRumahSakit(String userNameRs, String passwordRs,
+            String namaRs,
+            String alamatRs,
+            int telpRs,
+            String emailRs){
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        RumahSakit rumahSakit = new RumahSakit(userNameRs, passwordRs, namaRs, alamatRs, telpRs, emailRs);
+        session.saveOrUpdate(rumahSakit);
+        transaction.commit();
+        session.close();
     }
     
 }
