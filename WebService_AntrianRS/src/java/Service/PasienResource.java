@@ -6,14 +6,17 @@
 package Service;
 
 import Helper.PasienHelper;
+import Pojos.Pasien;
 import com.google.gson.Gson;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
@@ -35,6 +38,7 @@ public class PasienResource {
 
     /**
      * Retrieves representation of an instance of Service.PasienResource
+     *
      * @return an instance of java.lang.String
      */
     @GET
@@ -61,10 +65,32 @@ public class PasienResource {
 
     /**
      * PUT method for updating or creating an instance of PasienResource
+     *
      * @param content representation for the resource
      */
     @PUT
     @Consumes(javax.ws.rs.core.MediaType.APPLICATION_JSON)
     public void putJson(String content) {
+    }
+
+    @POST
+    @Path("addPasien")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response addNewKlinik(String data) {
+        Gson gson = new Gson();
+        Pasien pasien = gson.fromJson(data, Pasien.class);
+        PasienHelper helper = new PasienHelper();
+        helper.addNewPasien(
+                pasien.getUserNamePsn(),
+                pasien.getPasswordPsn(),
+        pasien.getNikPsn(),
+        pasien.getNamaPsn(),
+        pasien.getAlamatPsn(),
+        pasien.getTelpPsn(),
+        pasien.getEmailPsn());
+        return Response
+                .status(200)
+                .entity(pasien)
+                .build();
     }
 }

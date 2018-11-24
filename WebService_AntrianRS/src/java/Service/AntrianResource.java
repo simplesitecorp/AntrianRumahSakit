@@ -45,7 +45,7 @@ public class AntrianResource {
         Gson g = new Gson();
 
         return Response.status(Response.Status.OK)
-                .entity(g.toJson(helper.getAllPasien()))
+                .entity(g.toJson(helper.getAllAntrian()))
                 .header("Access-Control-Allow-Origin", "*")
                 .header("Access-Control-Allow-Methods",
                         "GET,POST,HEAD,OPTIONS,PUT")

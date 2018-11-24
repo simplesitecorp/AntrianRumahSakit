@@ -18,12 +18,12 @@ import org.hibernate.Transaction;
  * @author Afra Rian
  */
 public class AntrianHelper {
-    
+
     public AntrianHelper() {
-        
+
     }
-    
-    public List<Antrian> getAllPasien(){
+
+    public List<Antrian> getAllAntrian() {
         List<Antrian> result = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         String query = "from Antrian a";
@@ -31,12 +31,12 @@ public class AntrianHelper {
         result = q.list();
         session.close();
         return result;
-        
+
     }
-    
+
     public void addNewAntrian(String namaPsn, String namaRs,
             String namaKlinik,
-            Date date){
+            Date date) {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         Antrian antrian = new Antrian(namaPsn, namaRs, namaKlinik, date);
@@ -44,5 +44,5 @@ public class AntrianHelper {
         transaction.commit();
         session.close();
     }
-    
+
 }

@@ -22,7 +22,7 @@ public class KlinikHelper {
 
     }
     
-    public List<Klinik> getAllPasien(){
+    public List<Klinik> getAllKlinik(){
         List<Klinik> result = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         String query = "from Klinik k";
