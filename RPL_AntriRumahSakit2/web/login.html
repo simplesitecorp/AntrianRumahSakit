@@ -4,8 +4,9 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html lang="en">
-    <head>
+<html>
+    <body>
+        
         <title>Login</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,23 +28,12 @@ and open the template in the editor.
                 background-color: steelblue; /* blue */
                 color: #ffffff;
             }
-            .bg-2 {     
-                background-color: #474e5d; /* Dark Blue */
-                color: #ffffff;
-            }
-            .bg-3 { 
-                background-color: #ffffff; /* White */
-                color: #555555;
-            }
-            .bg-4 { 
-                background-color: #2f2f2f; /* Black Gray */
-                color: #fff;
-            }
             .container-fluid {
                 padding-top: 70px;
                 padding-bottom: 70px;
-            }            
-            .navbar {
+                color: black;
+            }            .navbar {
+                
                 padding-top: 15px;
                 padding-bottom: 15px;
                 border: 0;
@@ -55,22 +45,66 @@ and open the template in the editor.
             .navbar-nav  li a:hover {
                 color: #1abc9c !important;
             }
+            table, th , td  {
+                border: 1px solid grey;
+                border-collapse: collapse;
+                padding: 5px;
+            }
         </style>
-    </head>
-    <body>
+    
+  
 
-        <div class="container-fluid bg-1">
-            <h3 class="margin">LOGIN</h3>
-            <form name="tesJson" action=""
-                  onsubmit="return ?" method="POST">
-                <div class="form-group">
-                    <label for="uname">Username :</label>
-                    <input type="text" class="form-control" id="uname" placeholder="Masukkan Username">
+        <!-- Navbar -->
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>                        
+                    </button>
+                    <a class="navbar-brand" href=index.html>Home</a>
                 </div>
-                <div class="form-group">
-                    <label for="psw">Password :</label>
-                    <input type="text" class="form-control" id="psw" placeholder="Masukkan Password">
-                </div>
-            </form>
+            </div>
+        </nav>
+        <div class ="container-fluid bg-1">
+            <input id="b" name = "b" placeholder="Username" >
+            <br>
+            <input id="a" name="a" placeholder="Password" type="password">
+            <br>
+            <br>
+            <button type ="button" onclick= "#" id="btn" style="margin-left: 5%">Login</button>
+            <p id="demo2"></p> 
+            <div id="tampil1"></div>
+            <div id="tampil2"></div>
         </div>
-    </body></html>
+        <p id="demo"></p>
+
+       <script>
+            function loadDoc() {
+                var email = b.value;
+                var pw = a.value;
+                var url = 
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var user = JSON.parse(this.responseText);
+                        if (user !== null) {
+                            alert("Selamat Datang di Sistem Antrian Online" );
+                            open("setelah.html");
+                        } else {
+                            alert("Login Gagal");
+                        }
+                        document.getElementById("demo").innerHTML =
+                                this.responseText;
+                    }
+                };
+                xhttp.open("GET", url, true);
+                xhttp.send();
+            }
+        </script>
+
+      
+
+    </body>
+</html>
