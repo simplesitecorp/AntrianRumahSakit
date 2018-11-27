@@ -45,4 +45,15 @@ public class rumahSakitHelper {
         transaction.commit();
         session.close();
     }
+    
+    public RumahSakit login1(String userNameRs,String passwordRs){
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        String q = "From RumahSakit r where r.userNameRs=:userNameRs AND r.passwordRs =:passwordRs";
+        
+        Query query = session.createQuery(q);
+        query.setParameter("userNameRs", userNameRs);
+        query.setParameter("passwordRs", passwordRs);
+        
+        return (RumahSakit) query.uniqueResult();
+}
 }

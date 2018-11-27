@@ -45,4 +45,15 @@ public class pasienHelper {
         transaction.commit();
         session.close();
     }
+    
+    public Pasien login1(String userNamePsn,String passwordPsn){
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        String q = "From Pasien p where p.userNamePsn=:userNamePsn AND p.passwordPsn =:passwordPsn";
+        
+        Query query = session.createQuery(q);
+        query.setParameter("userNamePsn", userNamePsn);
+        query.setParameter("passwordPsn", passwordPsn);
+        
+        return (Pasien) query.uniqueResult();
+}
 }
