@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+--><html>
+    <body>
+        
+        <title>Login</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <style>
+            body {
+                font: 20px Montserrat, sans-serif;
+                line-height: 1.8;
+                color: #f5f6f7;
+            }
+            p {font-size: 16px;}
+            .margin {margin-bottom: 45px;}
+            .bg-1 { 
+                background-color: steelblue; /* blue */
+                color: #ffffff;
+            }
+            .container-fluid {
+                padding-top: 70px;
+                padding-bottom: 70px;
+                color: black;
+            }            .navbar {
+                
+                padding-top: 15px;
+                padding-bottom: 15px;
+                border: 0;
+                border-radius: 0;
+                margin-bottom: 0;
+                font-size: 12px;
+                letter-spacing: 5px;
+            }
+            .navbar-nav  li a:hover {
+                color: #1abc9c !important;
+            }
+            table, th , td  {
+                border: 1px solid grey;
+                border-collapse: collapse;
+                padding: 5px;
+            }
+        </style>
+    
+  
+
+        <!-- Navbar -->
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>                        
+                    </button>
+                    <a class="navbar-brand" href=index.html>Home</a>
+                </div>
+            </div>
+        </nav>
+        <div class ="container-fluid bg-1">
+            <input id="b" name = "b" placeholder="Username" >
+            <br>
+            <input id="a" name="a" placeholder="Password" type="password">
+            <br>
+            <br>
+            <button type ="button" onclick= "#" id="btn" style="margin-left: 5%">Login</button>
+            <p id="demo2"></p> 
+            <div id="tampil1"></div>
+            <div id="tampil2"></div>
+        </div>
+        <p id="demo"></p>
+
+       <script>
+            function loadDoc() {
+                var email = b.value;
+                var pw = a.value;
+                var url = 
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var user = JSON.parse(this.responseText);
+                        if (user !== null) {
+                            alert("Selamat Datang di Sistem Antrian Online" );
+                            open("setelah.html");
+                        } else {
+                            alert("Login Gagal");
+                        }
+                        document.getElementById("demo").innerHTML =
+                                this.responseText;
+                    }
+                };
+                xhttp.open("GET", url, true);
+                xhttp.send();
+            }
+        </script>
+
+      
+
+    </body>
+</html>
+
