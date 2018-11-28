@@ -90,8 +90,8 @@ and open the template in the editor.
 
         <div class="container-fluid bg-1">
             <h3 class="margin"></h3>
-            <form name="tesJson" action=""
-                  onsubmit="return " method="POST">
+            <form name="tesJson" action="halamanAntrian.html"
+                  onsubmit="" method="POST">
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Pilih Klinik</label>
                     <select class="form-control" id="klinik">
@@ -101,30 +101,11 @@ and open the template in the editor.
                     </select>
 
                 </div>
-                <button type="submit" class="btn-default"> Oke</button>
+                <button type="submit" class="btn-default" > Oke</button>
             </form>  
         </div>
 
         <p id="demo"></p>
-        <script>
-            function loadDoc() {
-                var url =  
-                var xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
-                        var user = JSON.parse(this.responseText);
-                        if (user !== null) {
-                            open("halamanAntrian.html");
-                        } else {
-                            alert("Hmm");
-                        }
-                        document.getElementById("demo").innerHTML =
-                                this.responseText;
-                    }
-                };
-                xhttp.open("GET", url, true);
-                xhttp.send();
-            }
-        </script>
+        
 
 </html>
