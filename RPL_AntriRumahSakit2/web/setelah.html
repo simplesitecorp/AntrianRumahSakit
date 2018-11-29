@@ -70,35 +70,129 @@ and open the template in the editor.
 
 
                 </div>
-                <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav navbar-right">
-                        <!--                         <li><a href = login.html>Login</a></li>-->
-                        <!--                        <li class="dropdown">
-                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Login
-                                                        <span class="caret"></span></a>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a href="#">Login Pasien </a></li>
-                                                        <li><a href="#">Login Rumah Sakit </a></li>
-                                                    </ul>
-                                                </li> -->
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Rumah Sakit
-                                <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="RumahSakitA.html">Rumah Sakit A </a></li>
-                                <li><a href="#">Rumah Sakit B </a></li>
-                                <li><a href="#">Rumah Sakit C </a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+                <!--                <div class="collapse navbar-collapse" id="myNavbar">
+                                    <ul class="nav navbar-nav navbar-right">
+                                                                 <li><a href = login.html>Login</a></li>
+                                                                <li class="dropdown">
+                                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Login
+                                                                        <span class="caret"></span></a>
+                                                                    <ul class="dropdown-menu">
+                                                                        <li><a href="#">Login Pasien </a></li>
+                                                                        <li><a href="#">Login Rumah Sakit </a></li>
+                                                                    </ul>
+                                                                </li> 
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Rumah Sakit
+                                                <span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="RumahSakitA.html">Rumah Sakit A </a></li>
+                                                <li><a href="#">Rumah Sakit B </a></li>
+                                                <li><a href="#">Rumah Sakit C </a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>-->
+                <!--                <center><button type="button" onclick="loadDoc()" id="btn">Daftar Rumah Sakit</button><br><br></center>
+                
+                                <div id="id01"></div>-->
+
+                <!--                <script>
+                                    function loadDoc() {
+                                        var xmlhttp = new XMLHttpRequest();
+                
+                                        var url = "http://202.94.83.190:8080//RPL_WebService_AntrianRS/webresources/rumahSakit";
+                
+                                        xmlhttp.onreadystatechange = function () {
+                                            if (this.readyState == 4 && this.status == 200) {
+                                                myFunction(this.responseText);
+                                            }
+                                        }
+                                        xmlhttp.open("GET", url, true);
+                                        xmlhttp.send();
+                
+                                        function myFunction(response) {
+                                            var arr = JSON.parse(response);
+                                            var i;
+                                            var out = "<table>";
+                
+                                            for (i = 0; i < arr.length; i++) {
+                                                out += "<tr><td>" +
+                                                        arr[i].namaRs +
+                                                        "</td><td>" +
+                                                        arr[i].alamatRs +
+                                                        "</td><td>" +
+                                                        arr[i].telpRs;
+                
+                                            }
+                                            out += "</table>";
+                                            document.getElementById("id01").innerHTML = out;
+                                        }
+                                    }
+                                </script>-->
             </div>
         </nav>
 
         <!-- First Container -->
         <div class="container-fluid bg-1 text-center">
             <h3 class="margin">SISTEM INFORMASI ANTRIAN ONLINE </h3>
-            <img src="3.png" class="img-responsive" style="display:inline" width="350" height="350">
+            <img src="3.png" class="img-responsive" style="display:inline" width="200" height="200">
+
+            <center><button type="button" onclick="loadDoc()" id="btn">Daftar Rumah Sakit</button><br><br></center>
+
+            <div id="id01"></div>
+
+            <script>
+                function loadDoc() {
+                    var xmlhttp = new XMLHttpRequest();
+
+                    var url = "http://202.94.83.190:8080//RPL_WebService_AntrianRS/webresources/rumahSakit";
+//                    var url = "http://localhost:8081/RPL_WebService_AntrianRS/webresources/rumahSakit";
+
+                    xmlhttp.onreadystatechange = function () {
+                        if (this.readyState == 4 && this.status == 200) {
+                            myFunction(this.responseText);
+                        }
+                    }
+                    xmlhttp.open("GET", url, true);
+                    xmlhttp.send();
+
+                    function myFunction(response) {
+                        var arr = JSON.parse(response);
+                        var i;
+                        var out = "<center><table border='2'>";
+
+                        for (i = 0; i < arr.length; i++) {
+                            if (i == 0) {
+                                out += " <tr><td><a href='RumahSakitA.html'>" +
+                                        arr[i].namaRs +
+                                        " </td><td> " +
+                                        arr[i].alamatRs +
+                                        " </td><td> " +
+                                        arr[i].telpRs +
+                                        " </td></tr></a> ";
+                            }else if (i == 1) {
+                                out += " <tr><td><a href='RumahSakitB.html'>" +
+                                        arr[i].namaRs +
+                                        " </td><td> " +
+                                        arr[i].alamatRs +
+                                        " </td><td> " +
+                                        arr[i].telpRs +
+                                        " </td></tr></a> ";
+                            }
+                                out += " <tr><td><a href='RumahSakitB.html'>" +
+                                        arr[i].namaRs +
+                                        " </td><td> " +
+                                        arr[i].alamatRs +
+                                        " </td><td> " +
+                                        arr[i].telpRs +
+                                        " </td></tr></a> ";
+
+                        }
+                        out += "</table></center>";
+                        document.getElementById("id01").innerHTML = out;
+                    }
+                }
+            </script>
 
         </div>
     </body>

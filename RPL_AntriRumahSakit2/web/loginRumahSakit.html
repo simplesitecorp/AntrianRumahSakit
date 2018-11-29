@@ -1,10 +1,7 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
---><html>
-    <body>
+<html>
+    <head>
+    
         
         <title>Login</title>
         <meta charset="utf-8">
@@ -52,8 +49,8 @@ and open the template in the editor.
         </style>
     
   
-
-        <!-- Navbar -->
+    </head>
+    <body>
         <nav class="navbar navbar-default">
             <div class="container">
                 <div class="navbar-header">
@@ -67,12 +64,12 @@ and open the template in the editor.
             </div>
         </nav>
         <div class ="container-fluid bg-1">
-            <input id="b" name = "b" placeholder="Username" >
+            <center><input id="b" name = "b" placeholder="Username" ></center>
             <br>
-            <input id="a" name="a" placeholder="Password" type="password">
+            <center><input id="a" name="a" placeholder="Password" type="password"></center>
             <br>
             <br>
-            <button type ="button" onclick= "#" id="btn" style="margin-left: 5%">Login</button>
+            <center><button type ="button" onclick= "loadDoc()" id="btn" style="margin-left: 5%">Login</button></center>
             <p id="demo2"></p> 
             <div id="tampil1"></div>
             <div id="tampil2"></div>
@@ -81,9 +78,9 @@ and open the template in the editor.
 
        <script>
             function loadDoc() {
-                var email = b.value;
-                var pw = a.value;
-                var url = 
+                var userNameRs = b.value;
+                var passwordRs = a.value;
+                var url = 'http://202.94.83.190:8080//RPL_WebService_AntrianRS/webresources/rumahSakit/login1?userNameRs=' + userNameRs + '&passwordRs=' + passwordRs'
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
@@ -102,9 +99,6 @@ and open the template in the editor.
                 xhttp.send();
             }
         </script>
-
-      
-
     </body>
 </html>
 

@@ -61,8 +61,7 @@ and open the template in the editor.
 
         <div class="container-fluid bg-1">
             <h3 class="margin">Form Sign Up Pasien</h3>
-            <form name="tesJson" action=""
-                  onsubmit="return ?" method="POST">
+            <form onsubmit="return make_json(this)" method="POST">
                 <div class="form-group">
                     <label for="uname">Username:</label>
                     <input type="text" class="form-control" id="uname" placeholder="Masukkan Username">
@@ -87,12 +86,35 @@ and open the template in the editor.
                     <label for="email">Email:</label>
                     <input type="text" class="form-control" id="email" placeholder="Masukkan Email">
                 </div>
-                <div class="form-group">
+<!--                <div class="form-group">
                     <label for="limit">Limit Antrian:</label>
                     <input type="text" class="form-control" id="limit" placeholder="Masukkan Limit Antrian">
-                </div>
+                </div>-->
                 <button type="submit" class="btn-default"> Simpan</button>
             </form>  
+            <pre id="berhasil"></pre>
         </div>
-        </body>
+        <script>
+                function make_json(form) {
+                        var json = {
+                            "userNameRs": form.uname.value,
+                            "passwordRs": form.psw.value,
+                            "namaRs": form.nama.value,
+                            "alamatRs": form.alamat.value,
+                            "telpRs": form.noTelp.value,
+                            "emailRs": form.email.value
+                        };
+                        var html = JSON.stringify(json, 0, 100);
+
+                        var Url = "http://202.94.83.190:8080//RPL_WebService_AntrianRS/webresources/rumahSakit/addRS";
+                        var xhr = new XMLHttpRequest();
+                        xhr.open('POST', Url, false);
+                        xhr.setRequestHeader("Content-type", "application/json");
+                        xhr.send(html);
+
+                        document.getElementById("berhasil").innerHTML = "Pendaftaran Berhasil";
+                        return false;
+                    }
+            </script>
+    </body>
 </html>
