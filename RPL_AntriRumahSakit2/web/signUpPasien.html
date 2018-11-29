@@ -6,7 +6,8 @@ and open the template in the editor.
 -->
 <html lang="en">
     <head>
-        <title>Sign Up Pasien</title>
+    <title>Sign Up Pasien</title>
+    <!--<center>Sign Up Pasien</center>-->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -60,8 +61,7 @@ and open the template in the editor.
     <body>
         <div class="container-fluid bg-1">
             <h3 class="margin">Form Sign Up Pasien</h3>
-            <form name="tesJson" action=""
-                  onsubmit="return ?" method="POST">
+            <form onsubmit="return make_json(this)" method="POST">
                 <div class="form-group">
                     <label for="uname">Username:</label>
                     <input type="text" class="form-control" id="uname" placeholder="Masukkan Username">
@@ -92,6 +92,31 @@ and open the template in the editor.
                 </div>
                 <button type="submit" class="btn-default"> Simpan</button>
             </form>  
+            <pre id="berhasil"></pre>
         </div>
+        <script>
+                function make_json(form) {
+                        var json = {
+                            "userNamePsn": form.uname.value,
+                            "passwordPsn": form.psw.value,
+                            "nikPsn": form.nik.value,
+                            "namaPsn": form.nama.value,
+                            "alamatPsn": form.alamat.value,
+                            "telpPsn": form.noTelp.value,
+                            "emailRs": form.email.value
+                        };
+                        var html = JSON.stringify(json, 0, 100);
+
+                        var Url = "http://202.94.83.190:8080//RPL_WebService_AntrianRS/webresources/rumahSakit/addPasien";
+                        var xhr = new XMLHttpRequest();
+                        xhr.open('POST', Url, false);
+                        xhr.setRequestHeader("Content-type", "application/json");
+                        xhr.send(html);
+
+                        document.getElementById("berhasil").innerHTML = "Pendaftaran Berhasil";
+                        return false;
+                        window.open("formAntrian.html");
+                    }
+            </script>
     </body>
 </html>

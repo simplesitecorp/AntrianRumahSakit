@@ -6,7 +6,8 @@ and open the template in the editor.
 -->
 <html lang="en">
     <head>
-        <title>Sign Up Rumah Sakit</title>
+    <title>Sign Up Pasien</title>
+    <!--<center>Sign Up Pasien</center>-->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -58,55 +59,40 @@ and open the template in the editor.
         </style>
     </head>
     <body>
-
         <div class="container-fluid bg-1">
-            <h3 class="margin">Form Sign Up Rumah Sakit</h3>
+            <h3 class="margin">Tambah Klinik</h3>
             <form onsubmit="return make_json(this)" method="POST">
                 <div class="form-group">
-                    <label for="uname">Username:</label>
-                    <input type="text" class="form-control" id="uname" placeholder="Masukkan Username">
+                    <label for="uname">ID Klinik:</label>
+                    <input type="text" class="form-control" id="id" placeholder="Masukkan ID Klinik">
                 </div>
                 <div class="form-group">
-                    <label for="psw">Password:</label>
-                    <input type="text" class="form-control" id="psw" placeholder="Masukkan Password">
+                    <label for="psw">Nama Klinik:</label>
+                    <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama Klinik">
                 </div>
                 <div class="form-group">
-                    <label for="nama">Nama:</label>
-                    <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama ">
+                    <label for="nik">Nama Rumah Sakit:</label>
+                    <input type="text" class="form-control" id="namaRs" placeholder="Masukkan Nama Rumah Sakit ">
                 </div>
                 <div class="form-group">
-                    <label for="alamat">Alamat:</label>
-                    <input type="text" class="form-control" id="alamat" placeholder="Masukkan Alamat">
-                </div>
-                <div class="form-group">
-                    <label for="noTelp">No.Telpon:</label>
-                    <input type="text" class="form-control" id="noTelp" placeholder="Masukkan No. Telpon">
-                </div>
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="text" class="form-control" id="email" placeholder="Masukkan Email">
-                </div>
-<!--                <div class="form-group">
-                    <label for="limit">Limit Antrian:</label>
+                    <label for="nama">Limit Antrian:</label>
                     <input type="text" class="form-control" id="limit" placeholder="Masukkan Limit Antrian">
-                </div>-->
+                </div>
                 <button type="submit" class="btn-default"> Simpan</button>
-            </form>
-            <pre id="berhasil"></pre>
+            </form>  
+            <!--<pre id="berhasil"></pre>-->
         </div>
         <script>
                 function make_json(form) {
                         var json = {
-                            "userNameRs": form.uname.value,
-                            "passwordRs": form.psw.value,
-                            "namaRs": form.nama.value,
-                            "alamatRs": form.alamat.value,
-                            "telpRs": form.noTelp.value,
-                            "emailRs": form.email.value
+                            "idKlinik": form.id.value,
+                            "namaKlinik": form.nama.value,
+                            "namaRs": form.namaRs.value,
+                            "limitAntrian": form.limit.value
                         };
                         var html = JSON.stringify(json, 0, 100);
 
-                        var Url = "http://202.94.83.190:8080//RPL_WebService_AntrianRS/webresources/rumahSakit/addRS";
+                        var Url = "http://202.94.83.190:8080//RPL_WebService_AntrianRS/webresources/klinik/addKlinik";
                         var xhr = new XMLHttpRequest();
                         xhr.open('POST', Url, false);
                         xhr.setRequestHeader("Content-type", "application/json");

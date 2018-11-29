@@ -4,9 +4,9 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html lang="en">
+<html>
     <head>
-        <title>Tambah Pasien</title>
+        <title>Form Antrian</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -26,7 +26,6 @@ and open the template in the editor.
             .bg-1 { 
                 background-color: steelblue; /* blue */
                 color: #ffffff;
-                
             }
             .bg-2 {     
                 background-color: #474e5d; /* Dark Blue */
@@ -59,34 +58,29 @@ and open the template in the editor.
         </style>
     </head>
     <body>
-        <!-- Navbar -->
-        <nav class="navbar navbar-default">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>                        
-                    </button>
-                    <a class="navbar-brand" href=index.html>Home</a>
-                </div>
-                <li><a href =#>Logout</a></li>
-            </div>
-        </nav>
-        
-        <div class="container-fluid bg-1 text-center">
-            <h3 class="margin">RUMAH SAKIT SEJAHTERA </h3>
-            <img src="2.png" class="img-responsive" style="display:inline" width="350" height="350">
-
-        
-               
-           <div class="container-fluid bg-1">
-            <h3 class="margin"></h3>
+        <div class="container-fluid bg-1">
+            <h3 class="margin">Form Antrian</h3>
             <form name="tesJson" action=""
-                  onsubmit="return " method="POST">
+                  onsubmit="return" method="POST">
                 <div class="form-group">
-                    <label for="exampleFormControlSelect1">Pilih Antrian</label>
+                    <label for="exampleFormControlSelect1">Pilih Rumah Sakit</label>
+                    <select class="form-control" id="rumahSakit">
+                        <option>RS Srimulyani</option>
+                        <option>RS A</option>
+                        <option>RS B</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Pilih Klinik</label>
                     <select class="form-control" id="klinik">
+                        <option>Klinik Mata</option>
+                        <option>Klinik A</option>
+                        <option>Klnik B</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Pilih Nomor Antrian</label>
+                    <select class="form-control" id="noAntri">
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -108,15 +102,9 @@ and open the template in the editor.
                         <option>19</option>
                         <option>20</option>
                     </select>
-
                 </div>
                 <button type="submit" class="btn-default"> Oke</button>
-            </form>  
+            </form>
         </div>
-            </div>
-        
-        
     </body>
-    
-    
 </html>
