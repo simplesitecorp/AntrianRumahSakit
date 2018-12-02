@@ -56,8 +56,70 @@ and open the template in the editor.
                 color: #1abc9c !important;
             }
         </style>
+        <script>
+            function loadDoc() {
+                var xmlhttp = new XMLHttpRequest();
+
+                var url = "http://202.94.83.190:8080//RPL_WebService_AntrianRS/webresources/rumahSakit";
+
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState === 4 && this.status === 200) {
+                        myFunction(this.responseText);
+                    }
+                };
+                xmlhttp.open("GET", url, true);
+                xmlhttp.send();
+
+                function myFunction(response) {
+                    var arr = JSON.parse(response);
+                    var i;
+                    var out = "";
+
+                    for (i = 0; i < arr.length; i++) {
+                        out += " <option value='" + arr[i].namaRs + "'>" +
+                                arr[i].namaRs +
+                                " </option>";
+                    }
+                    document.getElementById("rumahSakit").innerHTML = out;
+                }
+            }
+
+                function myFunction1() {
+                    var xmlhttpKlinik = new XMLHttpRequest();
+
+                    var url = "http://202.94.83.190:8080//RPL_WebService_AntrianRS/webresources/klinik";
+
+                    xmlhttpKlinik.onreadystatechange = function () {
+                        if (this.readyState === 4 && this.status === 200) {
+                            myFunction(this.responseText);
+                        }
+                    };
+                    xmlhttpKlinik.open("GET", url, true);
+                    xmlhttpKlinik.send();
+
+                    function myFunction(response) {
+                        var arr1 = JSON.parse(response);
+                        var i;
+                        var out = "";
+
+                        var e = document.getElementById("rumahSakit");
+                        var value = e.options[e.selectedIndex].value;
+                        var text = e.options[e.selectedIndex].text;
+
+                        for (i = 0; i < arr1.length; i++) {
+                            if (text === arr1[i].namaRs) {
+                                out += " <option value='" + arr1[i].namaKlinik + "'>" +
+                                        arr1[i].namaKlinik +
+                                        " </option>";
+                            }
+                        }
+                        document.getElementById("klinik").innerHTML = out;
+                    }
+                }
+            
+        </script>
     </head>
-    <body>
+    <body onload="loadDoc()">
         <div class="container-fluid bg-1">
             <h3 class="margin">Form Antrian</h3>
             <form name="tesJson" action=""
@@ -65,17 +127,13 @@ and open the template in the editor.
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Pilih Rumah Sakit</label>
                     <select class="form-control" id="rumahSakit">
-                        <option>RS Srimulyani</option>
-                        <option>RS A</option>
-                        <option>RS B</option>
+
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Pilih Klinik</label>
-                    <select class="form-control" id="klinik">
-                        <option>Klinik Mata</option>
-                        <option>Klinik A</option>
-                        <option>Klnik B</option>
+                    <select class="form-control" id="klinik"  onclick="function1()">
+
                     </select>
                 </div>
                 <div class="form-group">
@@ -106,5 +164,6 @@ and open the template in the editor.
                 <button type="submit" class="btn-default"> Oke</button>
             </form>
         </div>
+
     </body>
 </html>
