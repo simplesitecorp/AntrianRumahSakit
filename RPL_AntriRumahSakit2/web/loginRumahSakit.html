@@ -83,11 +83,11 @@
                 var url = 'http://202.94.83.190:8080//RPL_WebService_AntrianRS/webresources/rumahSakit/login1?userNameRs=' + userNameRs + '&passwordRs=' + passwordRs;
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
+                    if (this.readyState === 4 && this.status === 200) {
                         var user = JSON.parse(this.responseText);
                         if (user !== null) {
                             alert("Selamat Datang di Sistem Antrian Online" );
-                            open("setelah.html");
+                            open("userRumahSakit.html");
                         } else {
                             alert("Login Gagal");
                         }
