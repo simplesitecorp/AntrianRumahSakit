@@ -15,6 +15,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import pojos.Pasien;
@@ -38,6 +39,7 @@ public class pasienResource {
 
     /**
      * Retrieves representation of an instance of service.pasienResource
+     *
      * @return an instance of java.lang.String
      */
     @GET
@@ -64,13 +66,14 @@ public class pasienResource {
 
     /**
      * PUT method for updating or creating an instance of pasienResource
+     *
      * @param content representation for the resource
      */
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     public void putJson(String content) {
     }
-    
+
     @POST
     @Path("addPasien")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -81,14 +84,21 @@ public class pasienResource {
         helper.addNewPasien(
                 pasien.getUserNamePsn(),
                 pasien.getPasswordPsn(),
-        pasien.getNikPsn(),
-        pasien.getNamaPsn(),
-        pasien.getAlamatPsn(),
-        pasien.getTelpPsn(),
-        pasien.getEmailPsn());
+                pasien.getNikPsn(),
+                pasien.getNamaPsn(),
+                pasien.getAlamatPsn(),
+                pasien.getTelpPsn(),
+                pasien.getEmailPsn());
         return Response
                 .status(200)
                 .entity(pasien)
                 .build();
+    }
+
+    @GET
+    @Path("login1")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getJson(@QueryParam("userNamePsn") String userNamePsn, @QueryParam("passwordPsn") String passwordPsn) {
+        return new Gson().toJson(new pasienHelper().login1(userNamePsn, passwordPsn));
     }
 }

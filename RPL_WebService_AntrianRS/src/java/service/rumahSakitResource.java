@@ -15,6 +15,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import pojos.RumahSakit;
@@ -89,5 +90,12 @@ public class rumahSakitResource {
                 .status(200)
                 .entity(rs)
                 .build();
+}
+    
+    @GET
+    @Path("login1")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getJson(@QueryParam("userNameRs") String userNameRs, @QueryParam("passwordRs") String passwordRs) {
+        return new Gson().toJson(new rumahSakitHelper().login1(userNameRs, passwordRs));
 }
 }
