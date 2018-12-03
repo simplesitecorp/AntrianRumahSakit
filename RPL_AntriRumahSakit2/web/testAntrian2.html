@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <script>
+            function loadDoc() {
+                var xmlhttp = new XMLHttpRequest();
+
+                var url = "http://202.94.83.190:8080//RPL_WebService_AntrianRS/webresources/rumahSakit";
+
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState === 4 && this.status === 200) {
+                        myFunction(this.responseText);
+                    }
+                };
+                xmlhttp.open("GET", url, true);
+                xmlhttp.send();
+
+                function myFunction(response) {
+                    var arr = JSON.parse(response);
+                    var out = "";
+
+                    for (i = 0; i < arr.length; i++) {
+                        out += " <button id='tombol" + i + "' value='" + arr[i].namaRs + "' onclick='rs(" + arr[i].namaRs + ")'+>" +
+                                arr[i].namaRs +
+                                " </button>";
+                    }
+                    document.getElementById("rumahSakit").innerHTML = out;
+                }
+            }
+
+            function rs(input) {
+                var isi = input;
+                document.getElementById("rs").innerHTML = isi;
+            }
+//            function rs() {
+//                var xmlhttp = new XMLHttpRequest();
+//
+//                var url = "http://202.94.83.190:8080//RPL_WebService_AntrianRS/webresources/rumahSakit";
+//
+//                xmlhttp.onreadystatechange = function () {
+//                    if (this.readyState === 4 && this.status === 200) {
+//                        myFunction(this.responseText);
+//                    }
+//                };
+//                xmlhttp.open("GET", url, true);
+//                xmlhttp.send();
+//
+//                function myFunction(response) {
+//                    var arr = JSON.parse(response);
+//
+//                    for (i = 0; i < arr.length; i++) {
+//                        var out = "tombol";
+//                        out = out + i;
+//                        if (document.getElementById(out).value != null) {
+//                            var asd = document.getElementById(out).value;
+//                            document.getElementById("rs").innerHTML = asd;
+//                        }
+//                    }
+//                }
+//            }
+        </script>
+    </head>
+    <body onload="loadDoc()">
+        <label id="rs1">Pilih Rumah Sakit</label>
+        <br>
+        <div class="rumahSakit" id="rumahSakit">
+        </div>
+        <label id="rss">Pilih Klinik</label>
+        <div id="rs"></div>
+        <br>
+        <!--<div class="rumahSakit" id="rumahSakit">-->
+        <!--</div>-->
+    </body>
+</html>

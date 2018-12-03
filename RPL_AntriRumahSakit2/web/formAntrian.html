@@ -84,39 +84,39 @@ and open the template in the editor.
                 }
             }
 
-                function myFunction1() {
-                    var xmlhttpKlinik = new XMLHttpRequest();
+            function myFunction1() {
+                var xmlhttpKlinik = new XMLHttpRequest();
 
-                    var url = "http://202.94.83.190:8080//RPL_WebService_AntrianRS/webresources/klinik";
+                var url = "http://202.94.83.190:8080//RPL_WebService_AntrianRS/webresources/klinik";
 
-                    xmlhttpKlinik.onreadystatechange = function () {
-                        if (this.readyState === 4 && this.status === 200) {
-                            myFunction(this.responseText);
-                        }
-                    };
-                    xmlhttpKlinik.open("GET", url, true);
-                    xmlhttpKlinik.send();
-
-                    function myFunction(response) {
-                        var arr1 = JSON.parse(response);
-                        var i;
-                        var out = "";
-
-                        var e = document.getElementById("rumahSakit");
-                        var value = e.options[e.selectedIndex].value;
-                        var text = e.options[e.selectedIndex].text;
-
-                        for (i = 0; i < arr1.length; i++) {
-                            if (text === arr1[i].namaRs) {
-                                out += " <option value='" + arr1[i].namaKlinik + "'>" +
-                                        arr1[i].namaKlinik +
-                                        " </option>";
-                            }
-                        }
-                        document.getElementById("klinik").innerHTML = out;
+                xmlhttpKlinik.onreadystatechange = function () {
+                    if (this.readyState === 4 && this.status === 200) {
+                        myFunction(this.responseText);
                     }
+                };
+                xmlhttpKlinik.open("GET", url, true);
+                xmlhttpKlinik.send();
+
+                function myFunction(response) {
+                    var arr1 = JSON.parse(response);
+                    var i;
+                    var out = "";
+
+                    var e = document.getElementById("rumahSakit");
+                    var value = e.options[e.selectedIndex].value;
+                    var text = e.options[e.selectedIndex].text;
+
+                    for (i = 0; i < arr1.length; i++) {
+                        if (text === arr1[i].namaRs) {
+                            out += " <option value='" + arr1[i].namaKlinik + "'>" +
+                                    arr1[i].namaKlinik +
+                                    " </option>";
+                        }
+                    }
+                    document.getElementById("klinik").innerHTML = out;
                 }
-            
+            }
+
         </script>
     </head>
     <body onload="loadDoc()">
@@ -126,9 +126,11 @@ and open the template in the editor.
                   onsubmit="return" method="POST">
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Pilih Rumah Sakit</label>
-                    <select class="form-control" id="rumahSakit">
-
-                    </select>
+                    <pre id="log">
+                    </pre>
+                    <!--                    <select class="form-control" id="rumahSakit">
+                    
+                                        </select>-->
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Pilih Klinik</label>
