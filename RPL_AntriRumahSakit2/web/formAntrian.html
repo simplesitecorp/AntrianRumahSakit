@@ -117,6 +117,39 @@ and open the template in the editor.
                 }
             }
 
+            function myFunction2() {
+                var xmlhttpAntrian = new XMLHttpRequest();
+
+                var url = "http://202.94.83.190:8080//RPL_WebService_AntrianRS/webresources/klnik";
+
+                xmlhttpKlinik.onreadystatechange = function () {
+                    if (this.readyState === 4 && this.status === 200) {
+                        myFunction(this.responseText);
+                    }
+                };
+                xmlhttpKlinik.open("GET", url, true);
+                xmlhttpKlinik.send();
+
+                function myFunction(response) {
+                    var arr2 = JSON.parse(response);
+                    var i;
+                    var out = "";
+
+                    var e = document.getElementById("klinik");
+                    var value = e.options[e.selectedIndex].value;
+                    var text = e.options[e.selectedIndex].text;
+
+                    for (i = 0; i < arr2.length; i++) {
+                        if (text === arr2[i].namaRs) {
+                            out += " <option value='" + arr2[i].limitAntrian + "'>" +
+                                    arr2[i].limitAntrian +
+                                    " </option>";
+                        }
+                    }
+                    document.getElementById("antrian").innerHTML = out;
+                }
+            }
+
         </script>
     </head>
     <body onload="loadDoc()">
@@ -131,14 +164,20 @@ and open the template in the editor.
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Pilih Klinik</label>
-                    <select class="form-control" id="klinik" >
+                    <select class="form-control" id="klinik">
                     </select>
                 </div>
+                <!--                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Pilih Tanggal Berobat</label>
+                                    <select class="form-control" id="tanggal">
+                                        <input type="date" name="tglAntri">
+                                    </select>
+                                </div>-->
                 <div class="form-group">
-                    <label for="exampleFormControlSelect1">Pilih Tanggal Berobat</label>
-                    <select class="form-control" id="tanggal">
-                    </select>
+                    <label>Tanggal Berobat</label>
+                    <input class="form-control" type="Date" id="tanggal" value=""/>
                 </div>
+
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Nomor Antrian</label>
                     <select class="form-control" id="noAntri">
@@ -148,5 +187,7 @@ and open the template in the editor.
             </form>
         </div>
 
+
     </body>
+
 </html>
