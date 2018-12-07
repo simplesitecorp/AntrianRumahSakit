@@ -38,12 +38,17 @@ public class antrianHelper {
 
     public void addNewAntrian(String namaPsn, String namaRs,
             String namaKlinik,
-            Date date) {
+            Date date,
+            int nomorAntrian) {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        Antrian antrian = new Antrian(namaPsn, namaRs, namaKlinik, date);
+        Antrian antrian = new Antrian(namaPsn, namaRs, namaKlinik, date, 0);
         session.saveOrUpdate(antrian);
         transaction.commit();
         session.close();
     }
+//    
+//    public int getNomorAntrianTerakhir(String namaRs, namaKlinik, date){
+//        
+//    }
 }

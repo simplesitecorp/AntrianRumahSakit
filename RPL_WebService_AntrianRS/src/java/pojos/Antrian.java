@@ -1,5 +1,5 @@
 package pojos;
-// Generated Nov 26, 2018 2:51:37 PM by Hibernate Tools 4.3.1
+// Generated Dec 7, 2018 11:38:39 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -14,15 +14,17 @@ public class Antrian  implements java.io.Serializable {
      private String namaRs;
      private String namaKlinik;
      private Date date;
+     private int nomorAntrian;
 
     public Antrian() {
     }
 
-    public Antrian(String namaPsn, String namaRs, String namaKlinik, Date date) {
+    public Antrian(String namaPsn, String namaRs, String namaKlinik, Date date, int nomorAntrian) {
        this.namaPsn = namaPsn;
        this.namaRs = namaRs;
        this.namaKlinik = namaKlinik;
        this.date = date;
+       this.nomorAntrian = nomorAntrian;
     }
    
     public String getNamaPsn() {
@@ -52,6 +54,13 @@ public class Antrian  implements java.io.Serializable {
     
     public void setDate(Date date) {
         this.date = date;
+    }
+    public int getNomorAntrian() {
+        return this.nomorAntrian;
+    }
+    
+    public void setNomorAntrian(int nomorAntrian) {
+        this.nomorAntrian = nomorAntrian;
     }
 
 

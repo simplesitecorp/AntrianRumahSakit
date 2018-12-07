@@ -65,12 +65,14 @@ public class rumahSakitResource {
 
     /**
      * PUT method for updating or creating an instance of rumahSakitResource
+     * @param data
      * @param content representation for the resource
+     * @return 
      */
-    @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void putJson(String content) {
-    }
+//    @PUT
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    public void putJson(String content) {
+//    }
     
     @POST
     @Path("addRS")

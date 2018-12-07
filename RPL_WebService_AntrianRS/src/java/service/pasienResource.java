@@ -67,17 +67,18 @@ public class pasienResource {
     /**
      * PUT method for updating or creating an instance of pasienResource
      *
-     * @param content representation for the resource
+     * @param data
+     * @return 
      */
-    @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void putJson(String content) {
-    }
+//    @PUT
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    public void putJson(String content) {
+//    }
 
     @POST
     @Path("addPasien")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addNewKlinik(String data) {
+    public Response addNewPasien(String data) {
         Gson gson = new Gson();
         Pasien pasien = gson.fromJson(data, Pasien.class);
         pasienHelper helper = new pasienHelper();
