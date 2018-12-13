@@ -105,6 +105,9 @@ and open the template in the editor.
                 <button type="submit" class="btn-default"> Simpan</button>
             </form>  
             <pre id="berhasil"></pre>
+            <form method="post" action="formAntrian.html">
+                <button class="btn-default" type="submit">Daftar Antrian</button>
+            </form>
         </div>
         <script>
                 function make_json(form) {
@@ -119,7 +122,7 @@ and open the template in the editor.
                         };
                         var html = JSON.stringify(json, 0, 100);
 
-                        var Url = "http://202.94.83.190:8080//RPL_WebService_AntrianRS/webresources/rumahSakit/addPasien";
+                        var Url = "http://202.94.83.190:8080//RPL_WebService_AntrianRS/webresources/pasien/addPasien";
                         var xhr = new XMLHttpRequest();
                         xhr.open('POST', Url, false);
                         xhr.setRequestHeader("Content-type", "application/json");

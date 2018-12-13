@@ -6,8 +6,8 @@ and open the template in the editor.
 -->
 <html lang="en">
     <head>
-    <title>Tambah Klinik</title>
-    <!--<center>Sign Up Pasien</center>-->
+        <title>Tambah Klinik</title>
+        <!--<center>Sign Up Pasien</center>-->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -80,27 +80,31 @@ and open the template in the editor.
                 </div>
                 <button type="submit" class="btn-default"> Simpan</button>
             </form>  
-            <!--<pre id="berhasil"></pre>-->
+            <pre id="berhasil"></pre>
+            <form method="post" action="userRumahSakit.html">
+                <button class="btn-default" type="submit">Lihat Daftar Klinik</button>
+            </form>
         </div>
         <script>
-                function make_json(form) {
-                        var json = {
-                            "idKlinik": form.id.value,
-                            "namaKlinik": form.nama.value,
-                            "namaRs": form.namaRs.value,
-                            "limitAntrian": form.limit.value
-                        };
-                        var html = JSON.stringify(json, 0, 100);
+            function make_json(form) {
+                var json = {
+                    "idKlinik": form.id.value,
+                    "namaKlinik": form.nama.value,
+                    "namaRs": form.namaRs.value,
+                    "limitAntrian": form.limit.value
+                };
+                var html = JSON.stringify(json, 0, 100);
 
-                        var Url = "http://202.94.83.190:8080//RPL_WebService_AntrianRS/webresources/klinik/addKlinik";
-                        var xhr = new XMLHttpRequest();
-                        xhr.open('POST', Url, false);
-                        xhr.setRequestHeader("Content-type", "application/json");
-                        xhr.send(html);
+                var Url = "http://202.94.83.190:8080//RPL_WebService_AntrianRS/webresources/klinik/addKlinik";
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', Url, false);
+                xhr.setRequestHeader("Content-type", "application/json");
+                xhr.send(html);
 
-                        document.getElementById("berhasil").innerHTML = "Pendaftaran Berhasil";
-                        return false;
-                    }
-            </script>
+                document.getElementById("berhasil").innerHTML = "Pendaftaran Berhasil";
+                return false;
+                window.open("userRumahSakit.html");
+            }
+        </script>
     </body>
 </html>
