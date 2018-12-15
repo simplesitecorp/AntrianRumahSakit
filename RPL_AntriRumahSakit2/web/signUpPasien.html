@@ -13,6 +13,8 @@ and open the template in the editor.
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="style.css" type="text/css"/>
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -75,50 +77,50 @@ and open the template in the editor.
             <h3 class="margin">Form Sign Up Pasien</h3>
             <form onsubmit="return make_json(this)" method="POST">
                 <div class="form-group">
-                    <label for="uname">Username:</label>
-                    <input type="text" class="form-control" id="uname" placeholder="Masukkan Username">
+                    <label for="userNamePsn">Username:</label>
+                    <input type="text" class="form-control" id="userNamePsn" placeholder="Masukkan Username">
                 </div>
                 <div class="form-group">
-                    <label for="psw">Password:</label>
-                    <input type="text" class="form-control" id="psw" placeholder="Masukkan Password">
+                    <label for="passwordPsn">Password:</label>
+                    <input type="text" class="form-control" id="passwordPsn" placeholder="Masukkan Password">
                 </div>
                 <div class="form-group">
-                    <label for="nik">NIK:</label>
-                    <input type="text" class="form-control" id="nik" placeholder="Masukkan NIK ">
+                    <label for="nikPsn">NIK:</label>
+                    <input type="text" class="form-control" id="nikPsn" placeholder="Masukkan NIK ">
                 </div>
                 <div class="form-group">
-                    <label for="nama">Nama:</label>
-                    <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama ">
+                    <label for="namaPsn">Nama:</label>
+                    <input type="text" class="form-control" id="namaPsn" placeholder="Masukkan Nama ">
                 </div>
                 <div class="form-group">
-                    <label for="alamat">Alamat:</label>
-                    <input type="text" class="form-control" id="alamat" placeholder="Masukkan Alamat">
+                    <label for="alamatPsn">Alamat:</label>
+                    <input type="text" class="form-control" id="alamatPsn" placeholder="Masukkan Alamat">
                 </div>
                 <div class="form-group">
-                    <label for="noTelp">No.Telpon:</label>
-                    <input type="text" class="form-control" id="noTelp" placeholder="Masukkan No. Telpon ">
+                    <label for="telpPsn">No.Telpon:</label>
+                    <input type="text" class="form-control" id="telpPsn" placeholder="Masukkan No. Telpon ">
                 </div>
                 <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="text" class="form-control" id="email" placeholder="Masukkan Email ">
+                    <label for="emailPsn">Email:</label>
+                    <input type="text" class="form-control" id="emailPsn" placeholder="Masukkan Email ">
                 </div>
                 <button type="submit" class="btn-default"> Simpan</button>
             </form>  
             <pre id="berhasil"></pre>
-            <form method="post" action="formAntrian.html">
+<!--            <form method="post" action="formAntrian.html">
                 <button class="btn-default" type="submit">Daftar Antrian</button>
-            </form>
+            </form>-->
         </div>
         <script>
                 function make_json(form) {
                         var json = {
-                            "userNamePsn": form.uname.value,
-                            "passwordPsn": form.psw.value,
-                            "nikPsn": form.nik.value,
-                            "namaPsn": form.nama.value,
-                            "alamatPsn": form.alamat.value,
-                            "telpPsn": form.noTelp.value,
-                            "emailRs": form.email.value
+                            "userNamePsn": form.userNamePsn.value,
+                            "passwordPsn": form.passwordPsn.value,
+                            "nikPsn": form.nikPsn.value,
+                            "namaPsn": form.namaPsn.value,
+                            "alamatPsn": form.alamatPsn.value,
+                            "telpPsn": form.telpPsn.value,
+                            "emailPsn": form.emailPsn.value
                         };
                         var html = JSON.stringify(json, 0, 100);
 

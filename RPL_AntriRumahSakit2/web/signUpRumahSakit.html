@@ -74,33 +74,29 @@ and open the template in the editor.
             <h3 class="margin">Form Sign Up Rumah Sakit</h3>
             <form onsubmit="return make_json(this)" method="POST">
                 <div class="form-group">
-                    <label for="uname">Username:</label>
-                    <input type="text" class="form-control" id="uname" placeholder="Masukkan Username">
+                    <label for="userNameRs">Username:</label>
+                    <input type="text" class="form-control" id="userNameRs" placeholder="Masukkan Username">
                 </div>
                 <div class="form-group">
-                    <label for="psw">Password:</label>
-                    <input type="text" class="form-control" id="psw" placeholder="Masukkan Password">
+                    <label for="passwordRs">Password:</label>
+                    <input type="text" class="form-control" id="passwordRs" placeholder="Masukkan Password">
                 </div>
                 <div class="form-group">
-                    <label for="nama">Nama Rumah Sakit:</label>
-                    <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama ">
+                    <label for="namaRs">Nama Rumah Sakit:</label>
+                    <input type="text" class="form-control" id="namaRs" placeholder="Masukkan Nama ">
                 </div>
                 <div class="form-group">
-                    <label for="alamat">Alamat Rumah Sakit:</label>
-                    <input type="text" class="form-control" id="alamat" placeholder="Masukkan Alamat">
+                    <label for="alamatRs">Alamat Rumah Sakit:</label>
+                    <input type="text" class="form-control" id="alamatRs" placeholder="Masukkan Alamat">
                 </div>
                 <div class="form-group">
-                    <label for="noTelp">No.Telpon Rumah Sakit:</label>
-                    <input type="text" class="form-control" id="noTelp" placeholder="Masukkan No. Telpon">
+                    <label for="telpRs">No.Telpon Rumah Sakit:</label>
+                    <input type="text" class="form-control" id="telpRs" placeholder="Masukkan No. Telpon">
                 </div>
                 <div class="form-group">
-                    <label for="email">Email Rumah Sakit:</label>
-                    <input type="text" class="form-control" id="email" placeholder="Masukkan Email">
+                    <label for="emailRs">Email Rumah Sakit:</label>
+                    <input type="text" class="form-control" id="emailRs" placeholder="Masukkan Email">
                 </div>
-                <!--                <div class="form-group">
-                                    <label for="limit">Limit Antrian:</label>
-                                    <input type="text" class="form-control" id="limit" placeholder="Masukkan Limit Antrian">
-                                </div>-->
                 <button type="submit" class="btn-default"> Simpan</button>
             </form>
             <pre id="berhasil"></pre>
@@ -108,12 +104,12 @@ and open the template in the editor.
         <script>
             function make_json(form) {
                 var json = {
-                    "userNameRs": form.uname.value,
-                    "passwordRs": form.psw.value,
-                    "namaRs": form.nama.value,
-                    "alamatRs": form.alamat.value,
-                    "telpRs": form.noTelp.value,
-                    "emailRs": form.email.value
+                    "userNameRs": form.userNameRs.value,
+                    "passwordRs": form.passwordRs.value,
+                    "namaRs": form.namaRs.value,
+                    "alamatRs": form.alamatRs.value,
+                    "telpRs": form.telpRs.value,
+                    "emailRs": form.emailRs.value
                 };
                 var html = JSON.stringify(json, 0, 100);
 
