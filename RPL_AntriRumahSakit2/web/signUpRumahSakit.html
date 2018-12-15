@@ -80,7 +80,7 @@ and open the template in the editor.
                 </div>
                 <div class="form-group">
                     <label for="passwordRs">Password:</label>
-                    <input type="text" class="form-control" id="passwordRs" placeholder="Masukkan Password">
+                    <input type="password" class="form-control" id="passwordRs"  placeholder="Masukkan Password" >
                 </div>
                 <div class="form-group">
                     <label for="namaRs">Nama Rumah Sakit:</label>
@@ -114,8 +114,8 @@ and open the template in the editor.
                 };
                 var html = JSON.stringify(json, 0, 100);
 
-                var Url = "http://localhost:8084/RPL_WebService_AntrianRS/webresources/rumahSakit/addRS";
-//                var Url = "http://202.94.83.190:8080//RPL_WebService_AntrianRS/webresources/rumahSakit/addRS";
+//                var Url = "http://localhost:8084/RPL_WebService_AntrianRS/webresources/rumahSakit/addRS";
+                var Url = "http://202.94.83.190:8080//RPL_WebService_AntrianRS/webresources/rumahSakit/addRS";
                 var xhr = new XMLHttpRequest();
                 xhr.open('POST', Url, false);
                 xhr.setRequestHeader("Content-type", "application/json");
@@ -125,7 +125,7 @@ and open the template in the editor.
                 return false;
                 window.open("userRumahSakit.html");
             }
-            
+
         </script>
     </body>
 </html>
