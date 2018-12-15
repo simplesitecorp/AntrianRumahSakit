@@ -12,6 +12,7 @@ and open the template in the editor.
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="style.css" type="text/css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -75,7 +76,7 @@ and open the template in the editor.
             <form onsubmit="return make_json(this)" method="POST">
                 <div class="form-group">
                     <label for="userNameRs">Username:</label>
-                    <input type="text" class="form-control" id="userNameRs" placeholder="Masukkan Username">
+                    <input type="text" class="form-control" id="userNameRs" placeholder="Masukkan Password">
                 </div>
                 <div class="form-group">
                     <label for="passwordRs">Password:</label>
@@ -95,7 +96,7 @@ and open the template in the editor.
                 </div>
                 <div class="form-group">
                     <label for="emailRs">Email Rumah Sakit:</label>
-                    <input type="text" class="form-control" id="emailRs" placeholder="Masukkan Email">
+                    <input type="text" class="form-control" name="emailRs" placeholder="Masukkan Email">
                 </div>
                 <button type="submit" class="btn-default"> Simpan</button>
             </form>
@@ -113,7 +114,8 @@ and open the template in the editor.
                 };
                 var html = JSON.stringify(json, 0, 100);
 
-                var Url = "http://202.94.83.190:8080//RPL_WebService_AntrianRS/webresources/rumahSakit/addRS";
+                var Url = "http://localhost:8084/RPL_WebService_AntrianRS/webresources/rumahSakit/addRS";
+//                var Url = "http://202.94.83.190:8080//RPL_WebService_AntrianRS/webresources/rumahSakit/addRS";
                 var xhr = new XMLHttpRequest();
                 xhr.open('POST', Url, false);
                 xhr.setRequestHeader("Content-type", "application/json");
@@ -123,6 +125,7 @@ and open the template in the editor.
                 return false;
                 window.open("userRumahSakit.html");
             }
+            
         </script>
     </body>
 </html>
