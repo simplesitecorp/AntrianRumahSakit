@@ -38,6 +38,7 @@ public class rumahSakitResource {
 
     /**
      * Retrieves representation of an instance of service.rumahSakitResource
+     *
      * @return an instance of java.lang.String
      */
     @GET
@@ -64,8 +65,9 @@ public class rumahSakitResource {
 
     /**
      * PUT method for updating or creating an instance of rumahSakitResource
+     *
      * @param data
-     * @return 
+     * @return
      */
 //    @PUT
 //    @Consumes(MediaType.APPLICATION_JSON)
@@ -90,12 +92,12 @@ public class rumahSakitResource {
                 .status(200)
                 .entity(rs)
                 .build();
-}
-    
+    }
+
     @GET
     @Path("login1")
     @Produces(MediaType.APPLICATION_JSON)
     public String getJson(@QueryParam("userNameRs") String userNameRs, @QueryParam("passwordRs") String passwordRs) {
         return new Gson().toJson(new rumahSakitHelper().login1(userNameRs, passwordRs));
-}
+    }
 }

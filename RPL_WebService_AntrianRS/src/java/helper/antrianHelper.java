@@ -47,8 +47,11 @@ public class antrianHelper {
         transaction.commit();
         session.close();
     }
-//    
-//    public int getNomorAntrianTerakhir(String namaRs, namaKlinik, date){
+    
+//    public int getNomorAntrianTerakhir(String namaRs, String namaKlinik, Date date){
+//        Session session = NewHibernateUtil.getSessionFactory().openSession();
+//        String q = "From Antrian a Klinik k where a.date <= k.limitAntrian";
+//        Query query = session.createQuery(q);
 //        
 //    }
 }
