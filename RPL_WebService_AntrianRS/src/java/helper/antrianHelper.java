@@ -38,20 +38,63 @@ public class antrianHelper {
 
     public void addNewAntrian(String namaPsn, String namaRs,
             String namaKlinik,
-            Date date,
+            Date tanggal,
             int nomorAntrian) {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        Antrian antrian = new Antrian(namaPsn, namaRs, namaKlinik, date, 0);
+        Antrian antrian = new Antrian(namaPsn, namaRs, namaKlinik, tanggal, 0);
         session.saveOrUpdate(antrian);
         transaction.commit();
         session.close();
     }
-    
-//    public int getNomorAntrianTerakhir(String namaRs, String namaKlinik, Date date){
+
+    public int addNomorAntrian(
+            String namaRs,
+            String namaKlinik,
+            Date tanggal) {
+        List<Antrian> list = searchAntrian(
+            namaRs, namaKlinik, tanggal);
+        
+        int nomorAntrian = list.size()+1;
 //        Session session = NewHibernateUtil.getSessionFactory().openSession();
-//        String q = "From Antrian a Klinik k where a.date <= k.limitAntrian";
-//        Query query = session.createQuery(q);
-//        
-//    }
+//        Transaction tx = session.beginTransaction();
+//        String query = "from Antrian where namaRs=:namaRs AND namaKlinik=:namaKlinik AND tanggal=:tanggal";
+//        Query q = session.createQuery(query);
+//        q.setParameter("namaRs", namaRs);
+//        q.setParameter("namaKlinik", namaKlinik);
+//        q.setParameter("tanggal", tanggal);
+//        List<Antrian> list = q.list();
+//        antrian = list.size()+1;
+        return nomorAntrian;
+//        List<Antrian> hasil = null;
+//        int result;
+//        Session session = NewHibernateUtil.getSessionFactory().openSession();
+//        String query = "from Antrian a";
+//        Query q = session.createQuery(query);
+//        hasil = q.list();
+//        result = hasil.size()+1;
+//        session.close();
+//        return result;
+    }
+
+    public List<Antrian> searchAntrian(
+            String namaRs,
+            String namaKlinik,
+            Date tanggal) {
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        String query = "from Antrian where namaRs=:namaRs AND namaKlinik=:namaKlinik AND tanggal=:tanggal";
+        Query q = session.createQuery(query);
+        q.setParameter("namaRs", namaRs);
+        q.setParameter("namaKlinik", namaKlinik);
+        q.setParameter("tanggal", tanggal);
+        List<Antrian> list = q.list();
+        tx.commit();
+        session.close();
+        if (list.size() > 0) {
+            return list;
+        } else {
+            return null;
+        }
+    }
 }

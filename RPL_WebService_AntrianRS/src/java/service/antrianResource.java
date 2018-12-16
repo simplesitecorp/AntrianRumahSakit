@@ -7,6 +7,10 @@ package service;
 
 import com.google.gson.Gson;
 import helper.antrianHelper;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
@@ -14,7 +18,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PUT;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import pojos.Antrian;
@@ -66,10 +70,10 @@ public class antrianResource {
      * PUT method for updating or creating an instance of antrianResource
      * @param content representation for the resource
      */
-    @PUT
-    @Consumes(javax.ws.rs.core.MediaType.APPLICATION_JSON)
-    public void putJson(String content) {
-    }
+//    @PUT
+//    @Consumes(javax.ws.rs.core.MediaType.APPLICATION_JSON)
+//    public void putJson(String content) {
+//    }
     
     @POST
     @Path("addAntrian")
@@ -78,10 +82,41 @@ public class antrianResource {
         Gson gson = new Gson();
         Antrian antrian = gson.fromJson(data, Antrian.class);
         antrianHelper helper = new antrianHelper();
-        helper.addNewAntrian(antrian.getNamaPsn(), antrian.getNamaRs(), antrian.getNamaKlinik(), antrian.getDate(), antrian.getNomorAntrian());
+        helper.addNewAntrian(antrian.getNamaPsn(), antrian.getNamaRs(), antrian.getNamaKlinik(), antrian.getTanggal(), antrian.getNomorAntrian());
         return Response
                 .status(200)
                 .entity(antrian)
+                .build();
+    }
+    
+    @POST
+    @Path("addNomorAntrian")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response addNomorAntrian(String data) {
+        Gson gson = new Gson();
+        Antrian antrian = gson.fromJson(data, Antrian.class);
+        antrianHelper helper = new antrianHelper();
+        helper.addNomorAntrian(antrian.getNamaRs(), antrian.getNamaKlinik(), antrian.getTanggal());
+        return Response
+                .status(200)
+                .entity(antrian)
+                .build();
+    }
+    
+    @GET
+    @Path("cariAntrian")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getJson(@QueryParam("namaRs") String namaRs,
+            @QueryParam("namaKlinik") String namaKlinik, @QueryParam("date") String tanggal) throws ParseException {
+        antrianHelper helper = new antrianHelper();
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+        Date date;
+        date = format.parse(tanggal);
+        List<Antrian> list = helper.searchAntrian(namaRs, namaKlinik, date);
+        Gson gson = new Gson();
+        String json = gson.toJson(list);
+        return Response.status(200)
+                .entity(json)
                 .build();
     }
 }
