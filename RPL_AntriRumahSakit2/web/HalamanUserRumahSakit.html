@@ -91,7 +91,7 @@ and open the template in the editor.
         </style>
 
     </head>
-    <body>
+    <body onload="namaRs()">
 
         <!-- Navbar -->
         <nav class="navbar navbar-default">
@@ -103,12 +103,12 @@ and open the template in the editor.
                         <span class="icon-bar"></span>                        
                     </button>
                     <a class="navbar-brand" href=index.html>Home</a>
-                   
-                    
+
+
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
-<!--                         <li><a href = login.html>Login</a></li>-->
+                        <!--                         <li><a href = login.html>Login</a></li>-->
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Edit Klinik
                                 <span class="caret"></span></a>
@@ -117,14 +117,14 @@ and open the template in the editor.
                                 <!--<li><a href="loginRumahSakit.html">Login Rumah Sakit </a></li>-->
                             </ul>
                         </li> 
-<!--                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Edit Antrian
-                                <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Sign Up Pasien </a></li>
-                                <li><a href="#">Sign Up Rumah Sakit </a></li>
-                            </ul>
-                        </li>-->
+                        <!--                        <li class="dropdown">
+                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Edit Antrian
+                                                        <span class="caret"></span></a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="#">Sign Up Pasien </a></li>
+                                                        <li><a href="#">Sign Up Rumah Sakit </a></li>
+                                                    </ul>
+                                                </li>-->
                     </ul>
                 </div>
             </div>
@@ -133,15 +133,52 @@ and open the template in the editor.
         <!-- First Container -->
         <div class="container-fluid bg-1 text-center">
             <img src="3.png" class="img-responsive" style="display:inline" width="200" height="200">
-            <h2 class="margin">SISTEM INFORMASI ANTRIAN ONLINE </h2>
+
+            <h1 class="margin">SISTEM INFORMASI ANTRIAN ONLINE </h1>
+            <center><input class="form-control" id="namaRs" disabled=""></center>
+            <br>
+
             <center><button class="button" type="button" onclick="loadDoc()" id="btn">Daftar Rumah Sakit</button><br><br></center>
             <center><button class="button" type="button" onclick="loadDoc2()" id="btn">Daftar Pasien</button><br><br></center>
-            <center><button class="button" type="button" onclick="loadDoc3()" id="btn">Daftar Klinik</button><br><br></center>
+            <center><button class="button" type="button" onclick="cariKlinik()" id="btn">Daftar Klinik</button><br><br></center>
             <center><button class="button" type="button" onclick="loadDoc4()" id="btn">Daftar Antrian</button><br><br></center>
 
             <div id="id01"></div>
 
             <script>
+                function namaRs() {
+                    document.getElementById("namaRs").value = getCookie("userNameRs");
+                }
+
+                function cariKlinik() {
+                    var url = "http://202.94.83.190:8080/RPL_WebService_AntrianRS/webresources/klinik/cariDaftarKlinik?namaRs=" + namaRs.value;
+                    xmlhttp.onreadystatechange = function () {
+                        if (this.readyState === 4 && this.status === 200) {
+                            myFunction(this.responseText);
+                        }
+                    };
+                    xmlhttp.open("GET", url, true);
+                    xmlhttp.send();
+                    function myFunction(response) {
+                        var arr = JSON.parse(response);
+                        var i;
+                        var out = "<center><table border='2'>";
+                        for (i = 0; i < arr.length; i++) {
+                            out += " <tr><td>" +
+                                    arr[i].idKlinik +
+                                    " </td><td> " +
+                                    arr[i].namaKlinik +
+                                    " </td><td> " +
+                                    arr[i].namaRs +
+                                    " </td><td> " +
+                                    arr[i].limitAntrian +
+                                    " </td></tr>";
+                        }
+                        out += "</table></center>";
+                        document.getElementById("id01").innerHTML = out;
+                    }
+                }
+
                 function loadDoc() {
                     var xmlhttp = new XMLHttpRequest();
 
@@ -245,7 +282,7 @@ and open the template in the editor.
                         document.getElementById("id01").innerHTML = out;
                     }
                 }
-                
+
                 function loadDoc4() {
                     var xmlhttp = new XMLHttpRequest();
 
@@ -281,6 +318,23 @@ and open the template in the editor.
                         document.getElementById("id01").innerHTML = out;
                     }
                 }
+
+                function getCookie(cname) {
+                    var name = cname + "=";
+                    var decodedCookie = decodeURIComponent(document.cookie);
+                    var ca = decodedCookie.split(';');
+                    for (var i = 0; i < ca.length; i++) {
+                        var c = ca[i];
+                        while (c.charAt(0) === ' ') {
+                            c = c.substring(1);
+                        }
+                        if (c.indexOf(name) === 0) {
+                            return c.substring(name.length, c.length);
+                        }
+                    }
+                    return "";
+                }
+
             </script>
 
         </div>

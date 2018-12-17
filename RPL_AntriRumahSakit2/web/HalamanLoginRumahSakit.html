@@ -86,8 +86,9 @@
                     if (this.readyState === 4 && this.status === 200) {
                         var user = JSON.parse(this.responseText);
                         if (user !== null) {
+                            document.cookie="userNameRs="+user.namaRs;
                             alert("Selamat Datang di Sistem Antrian Online" );
-                            open("userRumahSakit.html");
+                            open("HalamanUserRumahSakit.html", "_self");
                         } else {
                             alert("Login Gagal");
                         }

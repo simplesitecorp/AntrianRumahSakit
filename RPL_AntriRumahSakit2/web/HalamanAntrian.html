@@ -58,16 +58,7 @@ and open the template in the editor.
         </style>
         <script>
             function loadDoc() {
-//                var url = "http://202.94.83.190:8080//RPL_WebService_AntrianRS/webresources/pasien/cariPasien?userNamePsn=" + getCookie("userNamePsn") + "&passwordPsn=" + getCookie("passwordPsn");
-//                var xhttp = new XMLHttpRequest();
-//                xhttp.open("GET", url, true);
-//                xhttp.send();
-//                xhttp.onreadystatechange = function () {
-//                    if (this.readyState === 4 && this.status === 200) {
-//                        var objj = JSON.parse(this.responseText);
                 document.getElementById("namaPsn").value = getCookie("userNamePsn");
-//                    }
-//                };
             }
 
             function loadRs() {
