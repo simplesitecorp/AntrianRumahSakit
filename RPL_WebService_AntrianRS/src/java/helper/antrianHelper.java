@@ -97,4 +97,40 @@ public class antrianHelper {
             return null;
         }
     }
+    
+    public List<Antrian> searchDaftarAntrian(
+            String namaRs) {
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        String query = "from Antrian where namaRs=:namaRs";
+        Query q = session.createQuery(query);
+        q.setParameter("namaRs", namaRs);
+        List<Antrian> list = q.list();
+        tx.commit();
+        session.close();
+        if (list.size() > 0) {
+            return list;
+        } else {
+            return null;
+        }
+    }
+    
+    public List<Antrian> searchDaftarAntrianSpesifik(
+            String namaRs,
+            String namaKlinik) {
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        String query = "from Antrian where namaRs=:namaRs AND namaKlinik=:namaKlinik";
+        Query q = session.createQuery(query);
+        q.setParameter("namaRs", namaRs);
+        q.setParameter("namaKlinik", namaKlinik);
+        List<Antrian> list = q.list();
+        tx.commit();
+        session.close();
+        if (list.size() > 0) {
+            return list;
+        } else {
+            return null;
+        }
+    }
 }

@@ -119,4 +119,30 @@ public class antrianResource {
                 .entity(json)
                 .build();
     }
+    
+    @GET
+    @Path("cariDaftarAntrian")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getJson1(@QueryParam("namaRs") String namaRs) throws ParseException {
+        antrianHelper helper = new antrianHelper();
+        List<Antrian> list = helper.searchDaftarAntrian(namaRs);
+        Gson gson = new Gson();
+        String json = gson.toJson(list);
+        return Response.status(200)
+                .entity(json)
+                .build();
+    }
+    
+    @GET
+    @Path("cariDaftarAntrianSpesifik")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getJson2(@QueryParam("namaRs") String namaRs, @QueryParam("namaKlinik") String namaKlinik) throws ParseException {
+        antrianHelper helper = new antrianHelper();
+        List<Antrian> list = helper.searchDaftarAntrianSpesifik(namaRs, namaKlinik);
+        Gson gson = new Gson();
+        String json = gson.toJson(list);
+        return Response.status(200)
+                .entity(json)
+                .build();
+    }
 }

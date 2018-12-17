@@ -60,4 +60,20 @@ public class klinikHelper {
             return null;
         }
     }
+    
+    public List<Klinik> searchKlinik2(String namaRs) {
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        String query = "from Klinik where namaRs=:namaRs";
+        Query q = session.createQuery(query);
+        q.setParameter("namaRs", namaRs);
+        List<Klinik> list = q.list();
+        tx.commit();
+        session.close();
+        if (list.size() > 0) {
+            return list;
+        } else {
+            return null;
+        }
+    }
 }

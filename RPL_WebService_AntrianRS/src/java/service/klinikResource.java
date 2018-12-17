@@ -106,4 +106,17 @@ public class klinikResource {
                 .entity(json)
                 .build();
     }
+    
+    @GET
+    @Path("cariDaftarKlinik")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getJson(@QueryParam("namaRs") String namaRs) throws ParseException {
+        klinikHelper helper = new klinikHelper();
+        List<Klinik> list = helper.searchKlinik2(namaRs);
+        Gson gson = new Gson();
+        String json = gson.toJson(list);
+        return Response.status(200)
+                .entity(json)
+                .build();
+    }
 }
