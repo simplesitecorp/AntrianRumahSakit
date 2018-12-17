@@ -138,10 +138,9 @@ and open the template in the editor.
             <center><input class="form-control" id="namaRs" disabled=""></center>
             <br>
 
-            <center><button class="button" type="button" onclick="loadDoc()" id="btn">Daftar Rumah Sakit</button><br><br></center>
-            <center><button class="button" type="button" onclick="loadDoc2()" id="btn">Daftar Pasien</button><br><br></center>
             <center><button class="button" type="button" onclick="cariKlinik()" id="btn">Daftar Klinik</button><br><br></center>
-            <center><button class="button" type="button" onclick="loadDoc4()" id="btn">Daftar Antrian</button><br><br></center>
+            <center><button class="button" type="button" onclick="cariAntrian()" id="btn">Daftar Antrian</button><br><br></center>
+            <!--<center><button class="button" type="button" onclick="cariAntrianSpesifik()" id="btn">Daftar Antrian berdasarkan Klinik</button><br><br></center>-->
 
             <div id="id01"></div>
 
@@ -154,7 +153,7 @@ and open the template in the editor.
                     var xmlhttp = new XMLHttpRequest();
                     var a = getCookie("userNameRs");
                     var url = "http://202.94.83.190:8080/RPL_WebService_AntrianRS/webresources/klinik/cariDaftarKlinik?namaRs=" + a;
-                    
+
                     xmlhttp.onreadystatechange = function () {
                         if (this.readyState === 4 && this.status === 200) {
                             myFunction(this.responseText);
@@ -171,17 +170,19 @@ and open the template in the editor.
                                     arr[i].namaKlinik +
                                     " </td><td> " +
                                     arr[i].limitAntrian +
-                                    " </td></tr>";
+                                    " </td><td>" +
+                                    "<button type=\"submit\" onclick=\"myFunction1('" + arr[i].namaKlinik + "')\">Lihat Antrian</button>"
+                            "</td></tr>";
                         }
                         out += "</table></center>";
                         document.getElementById("id01").innerHTML = out;
                     }
                 }
-
-                function loadDoc() {
+                
+                function myFunction1(){
                     var xmlhttp = new XMLHttpRequest();
-
-                    var url = "http://202.94.83.190:8080//RPL_WebService_AntrianRS/webresources/rumahSakit";
+                    var a = getCookie("userNameRs");
+                    var url = "http://202.94.83.190:8080/RPL_WebService_AntrianRS/webresources/antrian/cariDaftarAntrianSpesifik?namaRs=" + a+ "&namaKLinik=" + namaKLinik.value;
 
                     xmlhttp.onreadystatechange = function () {
                         if (this.readyState === 4 && this.status === 200) {
@@ -190,91 +191,21 @@ and open the template in the editor.
                     };
                     xmlhttp.open("GET", url, true);
                     xmlhttp.send();
-
                     function myFunction(response) {
                         var arr = JSON.parse(response);
                         var i;
                         var out = "<center><table border='2'>";
-
                         for (i = 0; i < arr.length; i++) {
                             out += " <tr><td>" +
-                                    arr[i].namaRs +
-                                    " </td><td> " +
-                                    arr[i].alamatRs +
-                                    " </td><td> " +
-                                    arr[i].telpRs +
-                                    " </td></tr>";
-                        }
-                        out += "</table></center>";
-                        document.getElementById("id01").innerHTML = out;
-                    }
-                }
-
-                function loadDoc2() {
-                    var xmlhttp = new XMLHttpRequest();
-
-                    var url = "http://202.94.83.190:8080//RPL_WebService_AntrianRS/webresources/pasien";
-//                    var url = "http://localhost:8081/RPL_WebService_AntrianRS/webresources/pasien";
-
-                    xmlhttp.onreadystatechange = function () {
-                        if (this.readyState === 4 && this.status === 200) {
-                            myFunction(this.responseText);
-                        }
-                    };
-                    xmlhttp.open("GET", url, true);
-                    xmlhttp.send();
-
-                    function myFunction(response) {
-                        var arr = JSON.parse(response);
-                        var i;
-                        var out = "<center><table border='2'>";
-
-                        for (i = 0; i < arr.length; i++) {
-                            out += " <tr><td>" +
-                                    arr[i].nikPsn +
-                                    " </td><td> " +
                                     arr[i].namaPsn +
                                     " </td><td> " +
-                                    arr[i].alamatPsn +
-                                    " </td><td> " +
-                                    arr[i].telpPsn +
-                                    " </td><td> " +
-                                    arr[i].emailPsn +
-                                    " </td></tr>";
-                        }
-                        out += "</table></center>";
-                        document.getElementById("id01").innerHTML = out;
-                    }
-                }
-
-                function loadDoc3() {
-                    var xmlhttp = new XMLHttpRequest();
-
-                    var url = "http://202.94.83.190:8080//RPL_WebService_AntrianRS/webresources/klinik";
-//                    var url = "http://localhost:8081/RPL_WebService_AntrianRS/webresources/pasien";
-
-                    xmlhttp.onreadystatechange = function () {
-                        if (this.readyState === 4 && this.status === 200) {
-                            myFunction(this.responseText);
-                        }
-                    };
-                    xmlhttp.open("GET", url, true);
-                    xmlhttp.send();
-
-                    function myFunction(response) {
-                        var arr = JSON.parse(response);
-                        var i;
-                        var out = "<center><table border='2'>";
-
-                        for (i = 0; i < arr.length; i++) {
-                            out += " <tr><td>" +
-                                    arr[i].idKlinik +
+                                    arr[i].namaRs +
                                     " </td><td> " +
                                     arr[i].namaKlinik +
                                     " </td><td> " +
-                                    arr[i].namaRs +
+                                    arr[i].tanggal +
                                     " </td><td> " +
-                                    arr[i].limitAntrian +
+                                    arr[i].nomorAntrian +
                                     " </td></tr>";
                         }
                         out += "</table></center>";
@@ -282,10 +213,10 @@ and open the template in the editor.
                     }
                 }
 
-                function loadDoc4() {
+                function cariAntrian() {
                     var xmlhttp = new XMLHttpRequest();
-
-                    var url = "http://202.94.83.190:8080//RPL_WebService_AntrianRS/webresources/antrian";
+                    var a = getCookie("userNameRs");
+                    var url = "http://202.94.83.190:8080/RPL_WebService_AntrianRS/webresources/antrian/cariDaftarAntrian?namaRs=" + a;
 
                     xmlhttp.onreadystatechange = function () {
                         if (this.readyState === 4 && this.status === 200) {
@@ -294,12 +225,10 @@ and open the template in the editor.
                     };
                     xmlhttp.open("GET", url, true);
                     xmlhttp.send();
-
                     function myFunction(response) {
                         var arr = JSON.parse(response);
                         var i;
                         var out = "<center><table border='2'>";
-
                         for (i = 0; i < arr.length; i++) {
                             out += " <tr><td>" +
                                     arr[i].namaPsn +
