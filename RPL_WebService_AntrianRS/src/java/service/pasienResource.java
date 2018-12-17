@@ -7,6 +7,8 @@ package service;
 
 import com.google.gson.Gson;
 import helper.pasienHelper;
+import java.text.ParseException;
+import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
@@ -68,13 +70,12 @@ public class pasienResource {
      * PUT method for updating or creating an instance of pasienResource
      *
      * @param data
-     * @return 
+     * @return
      */
 //    @PUT
 //    @Consumes(MediaType.APPLICATION_JSON)
 //    public void putJson(String content) {
 //    }
-
     @POST
     @Path("addPasien")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -101,5 +102,19 @@ public class pasienResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String getJson(@QueryParam("userNamePsn") String userNamePsn, @QueryParam("passwordPsn") String passwordPsn) {
         return new Gson().toJson(new pasienHelper().login1(userNamePsn, passwordPsn));
+    }
+
+    @GET
+    @Path("cariPasien")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getJson1(@QueryParam("userNamePsn") String usernamePsn,
+            @QueryParam("passwordPsn") String passwordPsn) throws ParseException {
+        pasienHelper helper = new pasienHelper();
+        List<Pasien> list = helper.searchPasien(usernamePsn, passwordPsn);
+        Gson gson = new Gson();
+        String json = gson.toJson(list);
+        return Response.status(200)
+                .entity(json)
+                .build();
     }
 }
