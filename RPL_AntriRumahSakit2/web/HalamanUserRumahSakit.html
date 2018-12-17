@@ -91,7 +91,7 @@ and open the template in the editor.
         </style>
 
     </head>
-    <body onload="namaRs()">
+    <body onload="namaRsku()">
 
         <!-- Navbar -->
         <nav class="navbar navbar-default">
@@ -146,12 +146,15 @@ and open the template in the editor.
             <div id="id01"></div>
 
             <script>
-                function namaRs() {
+                function namaRsku() {
                     document.getElementById("namaRs").value = getCookie("userNameRs");
                 }
 
                 function cariKlinik() {
-                    var url = "http://202.94.83.190:8080/RPL_WebService_AntrianRS/webresources/klinik/cariDaftarKlinik?namaRs=" + namaRs.value;
+                    var xmlhttp = new XMLHttpRequest();
+                    var a = getCookie("userNameRs");
+                    var url = "http://202.94.83.190:8080/RPL_WebService_AntrianRS/webresources/klinik/cariDaftarKlinik?namaRs=" + a;
+                    
                     xmlhttp.onreadystatechange = function () {
                         if (this.readyState === 4 && this.status === 200) {
                             myFunction(this.responseText);
@@ -165,11 +168,7 @@ and open the template in the editor.
                         var out = "<center><table border='2'>";
                         for (i = 0; i < arr.length; i++) {
                             out += " <tr><td>" +
-                                    arr[i].idKlinik +
-                                    " </td><td> " +
                                     arr[i].namaKlinik +
-                                    " </td><td> " +
-                                    arr[i].namaRs +
                                     " </td><td> " +
                                     arr[i].limitAntrian +
                                     " </td></tr>";
