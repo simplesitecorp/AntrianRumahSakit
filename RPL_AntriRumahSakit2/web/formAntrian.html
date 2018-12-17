@@ -58,6 +58,19 @@ and open the template in the editor.
         </style>
         <script>
             function loadDoc() {
+//                var url = "http://202.94.83.190:8080//RPL_WebService_AntrianRS/webresources/pasien/cariPasien?userNamePsn=" + getCookie("userNamePsn") + "&passwordPsn=" + getCookie("passwordPsn");
+//                var xhttp = new XMLHttpRequest();
+//                xhttp.open("GET", url, true);
+//                xhttp.send();
+//                xhttp.onreadystatechange = function () {
+//                    if (this.readyState === 4 && this.status === 200) {
+//                        var objj = JSON.parse(this.responseText);
+                        document.getElementById("namaPsn").value = getCookie("userNamePsn");
+//                    }
+//                };
+            }
+            
+            function loadRs() {
                 var xmlhttp = new XMLHttpRequest();
 
                 var url = "http://202.94.83.190:8080//RPL_WebService_AntrianRS/webresources/rumahSakit";
@@ -161,7 +174,7 @@ and open the template in the editor.
 
             function tambah(form) {
                 var json = {
-                    "namaPsn": "test16",
+                    "namaPsn": form.namaPsn.value,
                     "namaRs": form.namaRs.value,
                     "namaKlinik": form.namaKlinik.value,
                     "tanggal": form.tanggal.value,
@@ -176,9 +189,6 @@ and open the template in the editor.
                 alert(html);
                 document.getElementById("berhasil").innerHTML = "Pendaftaran Berhasil";
                 return false;
-//                }
-
-
             }
 
             function getCookie(cname) {
@@ -207,12 +217,11 @@ and open the template in the editor.
                   onsubmit="return tambah(this)">
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Nama Pasien</label>
-                    <select class="form-control" id="namaPsn" disabled="">
-                    </select>
+                    <input class="form-control" id="namaPsn" disabled=""/>
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Pilih Rumah Sakit</label>
-                    <select class="form-control" id="namaRs" onchange="myFunction1()">
+                    <select class="form-control" id="namaRs" onclick="loadRs()" onchange="myFunction1()">
                     </select>
                 </div>
                 <div class="form-group">

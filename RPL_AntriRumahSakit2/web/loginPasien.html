@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
-    
+
         <title>Login</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,7 +33,7 @@ and open the template in the editor.
                 padding-bottom: 70px;
                 color: black;
             }            .navbar {
-                
+
                 padding-top: 15px;
                 padding-bottom: 15px;
                 border: 0;
@@ -51,7 +51,7 @@ and open the template in the editor.
                 padding: 5px;
             }
         </style>
-    
+
     </head>
     <body>
         <nav class="navbar navbar-default">
@@ -78,7 +78,7 @@ and open the template in the editor.
             <div id="tampil2"></div>
         </div>
         <p id="demo"></p>
-       <script>
+        <script>
             function loadDoc() {
                 var userNamePsn = b.value;
                 var passwordPsn = a.value;
@@ -88,8 +88,9 @@ and open the template in the editor.
                     if (this.readyState === 4 && this.status === 200) {
                         var user = JSON.parse(this.responseText);
                         if (user !== null) {
-                            alert("Selamat Datang di Sistem Antrian Online" );
-                            open("formAntrian.html");
+                            document.cookie="userNamePsn="+user.namaPsn;
+                            alert("Selamat Datang di Sistem Antrian Online");
+                            open("formAntrian.html", "_self");
                         } else {
                             alert("Login Gagal");
                         }
@@ -99,20 +100,29 @@ and open the template in the editor.
                 };
                 xhttp.open("GET", url, true);
                 xhttp.send();
+                
+//                var xmlhttp = new XMLHttpRequest();
+//
+//                var url = 'http://202.94.83.190:8080/RPL_WebService_AntrianRS/webresources/pasien/login1?userNamePsn=' + b.value + '&passwordPsn=' + a.value;
+//
+//                xmlhttp.onreadystatechange = function () {
+//                    if (this.readyState === 4 && this.status === 200) {
+//                        var myObj = JSON.parse(this.responseText);
+//                        
+//                    }
+//                };
+//                xmlhttp.open("GET", url, true);
+//                xmlhttp.send();
+//                
             }
-            
-            function namaPasien(namaPsn) {
-                window.open("formAntrian.html", "_self");
-                alert(namaPsn);
-                setCookie("namaPsn", namaPsn, 1);
-            }
-            
-            function setCookie(cname, cvalue, exdays) {
-                var d = new Date();
-                d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-                var expires = "expires=" + d.toUTCString();
-                document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-            }
+
+//            function namaPasien(namaPsn) {
+//                window.open("formAntrian.html", "_self");
+//                alert(namaPsn);
+//               
+//            }
+
+
         </script>
     </body>
 </html>
