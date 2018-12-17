@@ -80,7 +80,7 @@ and open the template in the editor.
                                 arr[i].namaRs +
                                 " </option>";
                     }
-                    document.getElementById("rumahSakit").innerHTML = out;
+                    document.getElementById("namaRs").innerHTML = out;
                 }
             }
 
@@ -102,7 +102,7 @@ and open the template in the editor.
                     var i;
                     var out = "";
 
-                    var e = document.getElementById("rumahSakit");
+                    var e = document.getElementById("namaRs");
                     var value = e.options[e.selectedIndex].value;
                     var text = e.options[e.selectedIndex].text;
 
@@ -113,41 +113,88 @@ and open the template in the editor.
                                     " </option>";
                         }
                     }
-                    document.getElementById("klinik").innerHTML = out;
+                    document.getElementById("namaKlinik").innerHTML = out;
                 }
             }
 
-            function myFunction2() {
-                var xmlhttpAntrian = new XMLHttpRequest();
-
-                var url = "http://202.94.83.190:8080//RPL_WebService_AntrianRS/webresources/klnik";
-
-                xmlhttpKlinik.onreadystatechange = function () {
+            function indeksAntrian(x) {
+                var a = document.getElementById("namaRs").value;
+                var b = document.getElementById("namaKlinik").value;
+                var c = document.getElementById("tanggal").value;
+                var url = "http://202.94.83.190:8080/RPL_WebService_AntrianRS/webresources/antrian/cariAntrian?namaRs=" + a + "&namaKlinik=" + b + "&tanggal=" + c;
+                var j;
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open("GET", url, true);
+                xmlhttp.send();
+//                alert(url);
+                xmlhttp.onreadystatechange = function () {
                     if (this.readyState === 4 && this.status === 200) {
-                        myFunction(this.responseText);
+                        var myObj = JSON.parse(this.responseText);
+                        if (myObj !== null && myObj.length < x) {
+                            j = myObj.length + 1;
+                        } else if (myObj === null) {
+                            j = 1;
+                        }
+//                        alert(j);
+                        document.getElementById("nomorAntrian").value = j;
+
                     }
                 };
-                xmlhttpKlinik.open("GET", url, true);
-                xmlhttpKlinik.send();
+            }
 
-                function myFunction(response) {
-                    var arr2 = JSON.parse(response);
-                    var i;
-                    var out = "";
-
-                    var e = document.getElementById("klinik");
-                    var value = e.options[e.selectedIndex].value;
-                    var text = e.options[e.selectedIndex].text;
-
-                    for (i = 0; i < arr2.length; i++) {
-                        if (text === arr2[i].namaRs) {
-                            out += " <option value='" + arr2[i].limitAntrian + "'>" +
-                                    arr2[i].limitAntrian +
-                                    " </option>";
-                        }
+            function make_json() {
+                var a = document.getElementById("namaRs").value;
+                var b = document.getElementById("namaKlinik").value;
+                var url = "http://202.94.83.190:8080//RPL_WebService_AntrianRS/webresources/klinik/cariKlinik?namaKlinik=" + b + "&namaRs=" + a;
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open("GET", url, true);
+                xmlhttp.send();
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState === 4 && this.status === 200) {
+                        var myObj = JSON.parse(this.responseText);
+                        var k = myObj[0].limitAntrian;
+                        indeksAntrian(k);
                     }
-                    document.getElementById("antrian").innerHTML = out;
+
+                };
+            }
+
+            function tambah(form) {
+                var json = {
+                    "namaPsn": "test16",
+                    "namaRs": form.namaRs.value,
+                    "namaKlinik": form.namaKlinik.value,
+                    "tanggal": form.tanggal.value,
+                    "nomorAntrian": form.nomorAntrian.value
+                };
+                var Url = "http://202.94.83.190:8080//RPL_WebService_AntrianRS/webresources/antrian/addAntrian";
+                var html = JSON.stringify(json, 0, 100);
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', Url, false);
+                xhr.setRequestHeader("Content-type", "application/json");
+                xhr.send(html);
+                alert(html);
+                document.getElementById("berhasil").innerHTML = "Pendaftaran Berhasil";
+                return false;
+//                }
+
+
+            }
+
+            function getCookie(cname) {
+                var name = cname + "=";
+                var decodedCookie = decodeURIComponent(document.cookie);
+                var ca = decodedCookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) === ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) === 0) {
+                        return c.substring(name.length, c.length);
+                    }
                 }
+                return "";
             }
 
         </script>
@@ -155,36 +202,42 @@ and open the template in the editor.
     <body onload="loadDoc()">
         <div class="container-fluid bg-1">
             <h3 class="margin">Form Antrian</h3>
+            <!--<form>-->
             <form name="tesJson" action=""
-                  onsubmit="return" method="POST">
+                  onsubmit="return tambah(this)">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Nama Pasien</label>
+                    <select class="form-control" id="namaPsn" disabled="">
+                    </select>
+                </div>
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Pilih Rumah Sakit</label>
-                    <select class="form-control" id="rumahSakit" onchange="myFunction1()">
+                    <select class="form-control" id="namaRs" onchange="myFunction1()">
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Pilih Klinik</label>
-                    <select class="form-control" id="klinik">
+                    <select class="form-control" id="namaKlinik">
                     </select>
                 </div>
-                <!--                <div class="form-group">
-                                    <label for="exampleFormControlSelect1">Pilih Tanggal Berobat</label>
-                                    <select class="form-control" id="tanggal">
-                                        <input type="date" name="tglAntri">
-                                    </select>
-                                </div>-->
                 <div class="form-group">
                     <label>Tanggal Berobat</label>
-                    <input class="form-control" type="Date" id="tanggal" value=""/>
+                    <input class="form-control" type="text" id="tanggal" placeholder="yyyyMMdd"/>
+                    <!--<input class="form-control" type="date" id="tanggal"/>-->
                 </div>
+
+                <!--<button type="submit" onclick="make_json()" class="btn-default"> Oke</button>-->
+                <button type="button" onclick="make_json()" class="btn-default"> Oke</button>
 
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Nomor Antrian</label>
-                    <select class="form-control" id="noAntri">
-                    </select>
+                    <input class="form-control" type="text" id="nomorAntrian" disabled/>
                 </div>
-                <button type="submit" class="btn-default"> Oke</button>
+
+                <button type="submit" class="btn-default"> Simpan</button>
+
             </form>
+            <pre id="berhasil"></pre>
         </div>
 
 
