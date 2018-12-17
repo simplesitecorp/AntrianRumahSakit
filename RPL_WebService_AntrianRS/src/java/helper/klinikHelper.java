@@ -43,4 +43,21 @@ public class klinikHelper {
         transaction.commit();
         session.close();
     }
+    
+    public List<Klinik> searchKlinik(String namaKlinik, String namaRs) {
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        String query = "from Klinik where namaKlinik=:namaKlinik AND namaRs=:namaRs";
+        Query q = session.createQuery(query);
+        q.setParameter("namaKlinik", namaKlinik);
+        q.setParameter("namaRs", namaRs);
+        List<Klinik> list = q.list();
+        tx.commit();
+        session.close();
+        if (list.size() > 0) {
+            return list;
+        } else {
+            return null;
+        }
+    }
 }

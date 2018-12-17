@@ -7,6 +7,8 @@ package service;
 
 import com.google.gson.Gson;
 import helper.klinikHelper;
+import java.text.ParseException;
+import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
@@ -15,6 +17,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import pojos.Klinik;
@@ -38,6 +41,7 @@ public class klinikResource {
 
     /**
      * Retrieves representation of an instance of service.klinikResource
+     *
      * @return an instance of java.lang.String
      */
     @GET
@@ -64,13 +68,14 @@ public class klinikResource {
 
     /**
      * PUT method for updating or creating an instance of klinikResource
+     *
      * @param content representation for the resource
      */
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     public void putJson(String content) {
     }
-    
+
     @POST
     @Path("addKlinik")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -87,5 +92,18 @@ public class klinikResource {
                 .status(200)
                 .entity(klinik)
                 .build();
-}
+    }
+    
+    @GET
+    @Path("cariKlinik")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getJson(@QueryParam("namaKlinik") String namaKlinik, @QueryParam("namaRs") String namaRs) throws ParseException {
+        klinikHelper helper = new klinikHelper();
+        List<Klinik> list = helper.searchKlinik(namaKlinik, namaRs);
+        Gson gson = new Gson();
+        String json = gson.toJson(list);
+        return Response.status(200)
+                .entity(json)
+                .build();
+    }
 }
