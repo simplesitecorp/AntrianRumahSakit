@@ -6,13 +6,15 @@ and open the template in the editor.
 -->
 <html lang="en">
     <head>
-        <title>Sign Up Rumah Sakit</title>
+        <title>Sign Up Pasien</title>
+        <!--<center>Sign Up Pasien</center>-->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="style.css" type="text/css"/>
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -72,60 +74,63 @@ and open the template in the editor.
             </div>
         </nav>
         <div class="container-fluid bg-1">
-            <h3 class="margin">Form Sign Up Rumah Sakit</h3>
+            <h3 class="margin">Form Sign Up Pasien</h3>
             <form onsubmit="return make_json(this)" method="POST">
                 <div class="form-group">
-                    <label for="userNameRs">Username:</label>
-                    <input type="text" class="form-control" id="userNameRs" placeholder="Masukkan Password">
+                    <label for="userNamePsn">Username:</label>
+                    <input type="text" class="form-control" id="userNamePsn" placeholder="Masukkan Username">
                 </div>
                 <div class="form-group">
-                    <label for="passwordRs">Password:</label>
-                    <input type="password" class="form-control" id="passwordRs"  placeholder="Masukkan Password" >
+                    <label for="passwordPsn">Password:</label>
+                    <input type="text" class="form-control" id="passwordPsn" placeholder="Masukkan Password">
                 </div>
                 <div class="form-group">
-                    <label for="namaRs">Nama Rumah Sakit:</label>
-                    <input type="text" class="form-control" id="namaRs" placeholder="Masukkan Nama ">
+                    <label for="nikPsn">NIK:</label>
+                    <input type="text" class="form-control" id="nikPsn" placeholder="Masukkan NIK ">
                 </div>
                 <div class="form-group">
-                    <label for="alamatRs">Alamat Rumah Sakit:</label>
-                    <input type="text" class="form-control" id="alamatRs" placeholder="Masukkan Alamat">
+                    <label for="namaPsn">Nama:</label>
+                    <input type="text" class="form-control" id="namaPsn" placeholder="Masukkan Nama ">
                 </div>
                 <div class="form-group">
-                    <label for="telpRs">No.Telpon Rumah Sakit:</label>
-                    <input type="text" class="form-control" id="telpRs" placeholder="Masukkan No. Telpon">
+                    <label for="alamatPsn">Alamat:</label>
+                    <input type="text" class="form-control" id="alamatPsn" placeholder="Masukkan Alamat">
                 </div>
                 <div class="form-group">
-                    <label for="emailRs">Email Rumah Sakit:</label>
-                    <input type="text" class="form-control" id="emailRs" placeholder="Masukkan Email">
+                    <label for="telpPsn">No.Telpon:</label>
+                    <input type="text" class="form-control" id="telpPsn" placeholder="Masukkan No. Telpon ">
+                </div>
+                <div class="form-group">
+                    <label for="emailPsn">Email:</label>
+                    <input type="text" class="form-control" id="emailPsn" placeholder="Masukkan Email ">
                 </div>
                 <button type="submit" class="btn-default"> Simpan</button>
-            </form>
+            </form>  
             <pre id="berhasil"></pre>
         </div>
         <script>
             function make_json(form) {
                 var json = {
-                    "userNameRs": form.userNameRs.value,
-                    "passwordRs": form.passwordRs.value,
-                    "namaRs": form.namaRs.value,
-                    "alamatRs": form.alamatRs.value,
-                    "telpRs": form.telpRs.value,
-                    "emailRs": form.emailRs.value
+                    "userNamePsn": form.userNamePsn.value,
+                    "passwordPsn": form.passwordPsn.value,
+                    "nikPsn": form.nikPsn.value,
+                    "namaPsn": form.namaPsn.value,
+                    "alamatPsn": form.alamatPsn.value,
+                    "telpPsn": form.telpPsn.value,
+                    "emailPsn": form.emailPsn.value
                 };
-                
                 var html = JSON.stringify(json, 0, 100);
 
-                var Url = "http://202.94.83.190:8080/RPL_WebService_AntrianRS/webresources/rumahSakit/addRS";
+                var Url = "http://202.94.83.190:8080//RPL_WebService_AntrianRS/webresources/pasien/addPasien";
                 var xhr = new XMLHttpRequest();
                 xhr.open('POST', Url, false);
                 xhr.setRequestHeader("Content-type", "application/json");
                 xhr.send(html);
-                alert(html);
+
                 document.getElementById("berhasil").innerHTML = "Pendaftaran Berhasil";
-                window.open("loginRumahSakit.html", "_self");
+                window.open("loginPasien.html");
                 return false;
             }
-
         </script>
     </body>
 </html>
