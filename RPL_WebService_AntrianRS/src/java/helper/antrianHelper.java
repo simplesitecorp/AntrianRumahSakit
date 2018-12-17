@@ -42,7 +42,7 @@ public class antrianHelper {
             int nomorAntrian) {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        Antrian antrian = new Antrian(namaPsn, namaRs, namaKlinik, tanggal, 0);
+        Antrian antrian = new Antrian(namaPsn, namaRs, namaKlinik, tanggal, nomorAntrian);
         session.saveOrUpdate(antrian);
         transaction.commit();
         session.close();

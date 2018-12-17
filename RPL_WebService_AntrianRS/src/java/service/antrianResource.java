@@ -107,7 +107,7 @@ public class antrianResource {
     @Path("cariAntrian")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getJson(@QueryParam("namaRs") String namaRs,
-            @QueryParam("namaKlinik") String namaKlinik, @QueryParam("date") String tanggal) throws ParseException {
+            @QueryParam("namaKlinik") String namaKlinik, @QueryParam("tanggal") String tanggal) throws ParseException {
         antrianHelper helper = new antrianHelper();
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
         Date date;
