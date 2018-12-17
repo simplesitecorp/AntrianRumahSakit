@@ -84,8 +84,28 @@ and open the template in the editor.
                 cursor: pointer;
             }
 
-            .button2 {background-color: #008CBA;} /* Blue */
-            .button3 {background-color: #f44336;} /* Red */ 
+            .button2 {background-color: #008CBA; /* Blue */
+                      border: none;
+                      color: white;
+                      padding: 15px 32px;
+                      text-align: center;
+                      text-decoration: none;
+                      display: inline-block;
+                      font-size: 16px;
+                      margin: 4px 2px;
+                      cursor: pointer;
+            }
+            .button3 {background-color: #f44336; /* Red */
+                      border: none;
+                      color: white;
+                      padding: 15px 32px;
+                      text-align: center;
+                      text-decoration: none;
+                      display: inline-block;
+                      font-size: 16px;
+                      margin: 4px 2px;
+                      cursor: pointer;
+            }
             .button4 {background-color: #e7e7e7; color: black;} /* Gray */ 
             .button5 {background-color: #555555;} /* Black */
         </style>
@@ -117,14 +137,13 @@ and open the template in the editor.
                                 <!--<li><a href="loginRumahSakit.html">Login Rumah Sakit </a></li>-->
                             </ul>
                         </li> 
-                        <!--                        <li class="dropdown">
-                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Edit Antrian
+                                                <li class="dropdown">
+                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Logout
                                                         <span class="caret"></span></a>
                                                     <ul class="dropdown-menu">
-                                                        <li><a href="#">Sign Up Pasien </a></li>
-                                                        <li><a href="#">Sign Up Rumah Sakit </a></li>
+                                                        <li><a href="index.html">Keluar</a></li>
                                                     </ul>
-                                                </li>-->
+                                                </li>
                     </ul>
                 </div>
             </div>
@@ -137,10 +156,16 @@ and open the template in the editor.
             <h1 class="margin">SISTEM INFORMASI ANTRIAN ONLINE </h1>
             <center><input class="form-control" id="namaRs" disabled=""></center>
             <br>
-
+            <label for="exampleFormControlSelect1">Cari Antrian bersarkan Klinik</label>
+            <br>
+            <label for="exampleFormControlSelect1">Masukkan Nama KLinik</label>
+            <input class="form-control" id="namaKlinik"/>
+            <br>
+            <button class="button3" type="button" onclick="cariAntrianSpesifik()" id="btn">Cari Antrian</button>
+            <br>
+            <br>
             <center><button class="button" type="button" onclick="cariKlinik()" id="btn">Daftar Klinik</button><br><br></center>
             <center><button class="button" type="button" onclick="cariAntrian()" id="btn">Daftar Antrian</button><br><br></center>
-            <!--<center><button class="button" type="button" onclick="cariAntrianSpesifik()" id="btn">Daftar Antrian berdasarkan Klinik</button><br><br></center>-->
 
             <div id="id01"></div>
 
@@ -170,19 +195,19 @@ and open the template in the editor.
                                     arr[i].namaKlinik +
                                     " </td><td> " +
                                     arr[i].limitAntrian +
-                                    " </td><td>" +
-                                    "<button type=\"submit\" onclick=\"myFunction1('" + arr[i].namaKlinik + "')\">Lihat Antrian</button>"
-                            "</td></tr>";
+//                                    " </td><td>" +
+//                                    "<button type=\"submit\" onclick=\"myFunction1('" + arr[i].namaKlinik + "')\">Lihat Antrian</button>"
+                                    "</td></tr>";
                         }
                         out += "</table></center>";
                         document.getElementById("id01").innerHTML = out;
                     }
                 }
-                
-                function myFunction1(){
+
+                function cariAntrian() {
                     var xmlhttp = new XMLHttpRequest();
                     var a = getCookie("userNameRs");
-                    var url = "http://202.94.83.190:8080/RPL_WebService_AntrianRS/webresources/antrian/cariDaftarAntrianSpesifik?namaRs=" + a+ "&namaKLinik=" + namaKLinik.value;
+                    var url = "http://202.94.83.190:8080/RPL_WebService_AntrianRS/webresources/antrian/cariDaftarAntrian?namaRs=" + a;
 
                     xmlhttp.onreadystatechange = function () {
                         if (this.readyState === 4 && this.status === 200) {
@@ -213,10 +238,10 @@ and open the template in the editor.
                     }
                 }
 
-                function cariAntrian() {
+                function cariAntrianSpesifik() {
                     var xmlhttp = new XMLHttpRequest();
                     var a = getCookie("userNameRs");
-                    var url = "http://202.94.83.190:8080/RPL_WebService_AntrianRS/webresources/antrian/cariDaftarAntrian?namaRs=" + a;
+                    var url = "http://202.94.83.190:8080/RPL_WebService_AntrianRS/webresources/antrian/cariDaftarAntrianSpesifik?namaRs=" + a + "&namaKlinik=" + namaKlinik.value;
 
                     xmlhttp.onreadystatechange = function () {
                         if (this.readyState === 4 && this.status === 200) {
