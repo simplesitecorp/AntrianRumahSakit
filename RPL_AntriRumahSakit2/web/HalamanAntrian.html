@@ -200,7 +200,7 @@ and open the template in the editor.
 
         </script>
     </head>
-    <body onload="loadDoc()">
+    <body onload="loadDoc(), loadRs()">
         <nav class="navbar navbar-default">
             <div class="container">
                 <div class="navbar-header">
@@ -224,7 +224,7 @@ and open the template in the editor.
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Pilih Rumah Sakit</label>
-                    <select class="form-control" id="namaRs" onclick="loadRs()" onchange="myFunction1()">
+                    <select class="form-control" id="namaRs" onchange="myFunction1()">
                     </select>
                 </div>
                 <div class="form-group">
